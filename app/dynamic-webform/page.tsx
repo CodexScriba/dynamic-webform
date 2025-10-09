@@ -2,10 +2,10 @@ import { Card, CardContent } from "@/components/ui/card"
 
 const Page = () => {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,_#e0f2ff_0%,#e2e8f0_40%,#cbd5f5_100%)] px-6 py-16">
-      <div className="pointer-events-none absolute -top-20 left-[-6rem] h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(56,189,248,0.35),_transparent_70%)] blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 right-[-5rem] h-80 w-80 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(129,140,248,0.38),_transparent_70%)] blur-3xl" />
-      <div className="pointer-events-none absolute bottom-[-4rem] left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(45,212,191,0.25),_transparent_70%)] blur-3xl" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,_#fdfefe_0%,#f4f9ff_52%,#edf5ff_100%)] px-6 py-16">
+      <div className="pointer-events-none absolute -top-24 left-[-7rem] h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(59,130,246,0.28),_transparent_70%)] blur-3xl" />
+      <div className="pointer-events-none absolute top-1/2 right-[-6rem] h-88 w-88 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(14,165,233,0.26),_transparent_70%)] blur-3xl" />
+      <div className="pointer-events-none absolute bottom-[-5rem] left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(56,189,248,0.22),_transparent_70%)] blur-3xl" />
       <Card className="w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_65%,#0f2167_65%,#0f2167_100%)] p-0 shadow-2xl">
         <CardContent className="p-0">
           <div className="grid min-h-[360px] grid-cols-1 md:grid-cols-[65%_35%]">
