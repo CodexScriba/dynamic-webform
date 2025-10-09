@@ -1,44 +1,188 @@
-import { Card, CardContent } from "@/components/ui/card"
+"use client"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { Check, Star, Zap } from "lucide-react"
+
+const FEATURES = [
+  {
+    icon: Check,
+    title: "Instant Access",
+    description: "Connect with qualified interpreters in seconds, 24/7",
+  },
+  {
+    icon: Star,
+    title: "Expert Linguists",
+    description: "Certified professionals with industry specialization",
+  },
+  {
+    icon: Zap,
+    title: "Fast Turnaround",
+    description: "Quick response times without compromising quality",
+  },
+] as const
 
 const Page = () => {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,_#fdfefe_0%,#f4f9ff_52%,#edf5ff_100%)] px-6 py-16">
-      <div className="pointer-events-none absolute -top-24 left-[-7rem] h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(59,130,246,0.28),_transparent_70%)] blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 right-[-6rem] h-88 w-88 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(14,165,233,0.26),_transparent_70%)] blur-3xl" />
-      <div className="pointer-events-none absolute bottom-[-5rem] left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(56,189,248,0.22),_transparent_70%)] blur-3xl" />
-      <Card className="w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_65%,#0f2167_65%,#0f2167_100%)] p-0 shadow-2xl">
-        <CardContent className="p-0">
-          <div className="grid min-h-[360px] grid-cols-1 md:grid-cols-[65%_35%]">
-            <div className="flex flex-col justify-center gap-6 p-10 text-slate-900">
-              <div>
-                <span className="text-xs uppercase tracking-[0.35em] text-slate-400">
-                  Primary Panel
-                </span>
-                <h1 className="mt-3 text-3xl font-semibold text-slate-900">
-                  Pure white canvas
-                </h1>
-              </div>
-              <p className="text-sm leading-relaxed text-slate-500">
-                Keep the focus on the essentials with a bright, pristine foundation. Perfect for
-                high-contrast copy or minimal forms.
-              </p>
-            </div>
+    <div className="flex min-h-screen items-center justify-center bg-[#f0f2f5] px-4 py-10">
+      <div className="grid w-full max-w-[1200px] min-h-[650px] grid-cols-1 overflow-hidden rounded-[16px] bg-white shadow-[0_10px_40px_rgba(0,32,96,0.1)] md:grid-cols-2">
+        <div className="relative bg-white p-[50px] md:min-h-[650px]">
+          <div
+            className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(255,149,0,0.12)_8px,rgba(255,149,0,0.12)_10px)]"
+            style={{ clipPath: "polygon(100% 0, 100% 100%, 0 0)" }}
+          />
 
-            <div className="flex flex-col justify-center gap-6 p-10 text-blue-50 md:text-right">
-              <div>
-                <span className="text-xs uppercase tracking-[0.35em] text-blue-200/70">
-                  Accent Panel
-                </span>
-                <h2 className="mt-3 text-3xl font-semibold">Deep blue spotlight</h2>
+          <div className="relative z-10">
+            <h2 className="text-[28px] font-bold text-[#002060]">Request a Quote</h2>
+            <div className="mt-[15px] h-1 w-[60px] rounded bg-[#FF9500]" />
+            <p className="mt-5 text-[14px] leading-[1.7] text-[#666666]">
+              Connect with our expert team for professional language services
+            </p>
+            <form className="mt-[35px] space-y-[22px]">
+              <div className="space-y-2">
+                <Label
+                  htmlFor="name"
+                  className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]"
+                >
+                  Full Name
+                </Label>
+                <Input
+                  id="name"
+                  placeholder="Enter your name"
+                  className="h-[52px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 text-[14px] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0"
+                />
               </div>
-              <p className="text-sm leading-relaxed text-blue-100/80">
-                Anchor supporting context or visuals against a rich, modern hue. Balanced contrast
-                keeps everything feeling cohesive.
-              </p>
+
+              <div className="space-y-2">
+                <Label
+                  htmlFor="email"
+                  className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]"
+                >
+                  Email Address
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="your.email@company.com"
+                  className="h-[52px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 text-[14px] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label
+                  htmlFor="company"
+                  className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]"
+                >
+                  Company
+                </Label>
+                <Input
+                  id="company"
+                  placeholder="Company name"
+                  className="h-[52px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 text-[14px] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]">
+                  Service Type
+                </Label>
+                <Select>
+                  <SelectTrigger className="h-[52px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 text-left text-[14px] text-[#444444] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0">
+                    <SelectValue placeholder="Choose service" />
+                  </SelectTrigger>
+                  <SelectContent className="border-none bg-white text-[#444444] shadow-[0_12px_30px_rgba(0,32,96,0.18)]">
+                    <SelectItem value="interpretation">Interpretation</SelectItem>
+                    <SelectItem value="translation">Translation</SelectItem>
+                    <SelectItem value="localization">Localization</SelectItem>
+                    <SelectItem value="consulting">Consulting</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label
+                  htmlFor="message"
+                  className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]"
+                >
+                  Project Details
+                </Label>
+                <Textarea
+                  id="message"
+                  placeholder="Describe your project requirements..."
+                  className="min-h-[110px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 py-3 text-[14px] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div className="relative overflow-hidden bg-[#002060] p-[50px] text-white md:min-h-[650px]">
+          <div className="pointer-events-none absolute -left-16 -top-16 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(74,144,226,0.3)_0%,rgba(74,144,226,0.15)_35%,rgba(74,144,226,0.06)_55%,transparent_75%)]" />
+          <div className="pointer-events-none absolute -bottom-16 -right-16 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(255,149,0,0.25)_0%,rgba(255,149,0,0.12)_35%,rgba(255,149,0,0.05)_55%,transparent_75%)]" />
+          <div className="relative z-10 flex h-full flex-col">
+            <div className="inline-block pl-[24px]">
+              <h3 className="relative text-[26px] font-bold">
+                <span className="absolute left-0 top-0 h-full w-[5px] rounded bg-[#FF9500]" />
+                Why Choose Us?
+              </h3>
+            </div>
+            <p className="mt-4 text-[15px] leading-relaxed text-white/90">
+              Experience the difference of working with industry-leading language professionals
+              trusted by Fortune 500 companies.
+            </p>
+            <div className="mt-8 space-y-5">
+              {FEATURES.map(({ icon: Icon, title, description }) => (
+                <div
+                  key={title}
+                  className="flex items-start gap-4 rounded-lg border-l-[3px] border-[#FF9500] bg-white/10 p-4 transition-all duration-300 hover:translate-x-1 hover:bg-white/20"
+                >
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#FF9500] to-[#FFA500] text-[18px] font-bold text-white">
+                    <Icon className="size-5" strokeWidth={2.5} />
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="text-[16px] font-semibold">{title}</h4>
+                    <p className="text-[13px] text-white/85">{description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3 text-[#FFB347]">
+              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[12px] font-semibold">
+                580+ Languages
+              </div>
+              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[12px] font-semibold">
+                35,000+ Interpreters
+              </div>
+              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[12px] font-semibold">
+                ISO Certified
+              </div>
+            </div>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Button
+                variant="ghost"
+                className="flex-1 rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-8 py-4 text-[15px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] hover:text-white focus-visible:ring-[#FF9500]/40"
+              >
+                Submit Request
+              </Button>
+              <Button
+                variant="ghost"
+                className="flex-1 rounded-lg border-2 border-white/40 bg-transparent px-8 py-4 text-[15px] font-bold uppercase tracking-[0.5px] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10 hover:text-white"
+              >
+                Call Us
+              </Button>
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }
