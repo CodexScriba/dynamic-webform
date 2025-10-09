@@ -34,7 +34,7 @@ const FEATURES = [
 const Page = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f0f2f5] px-4 py-10">
-      <div className="grid w-full max-w-[1200px] min-h-[650px] grid-cols-1 overflow-hidden rounded-[16px] bg-white shadow-[0_10px_40px_rgba(0,32,96,0.1)] md:grid-cols-2">
+      <div className="grid w-full max-w-[1200px] min-h-[650px] grid-cols-1 overflow-hidden rounded-[16px] bg-white shadow-[0_10px_40px_rgba(0,32,96,0.1)] md:grid-cols-[65%_35%]">
         <div className="relative bg-white p-[50px] md:min-h-[650px]">
           <div
             className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(255,149,0,0.12)_8px,rgba(255,149,0,0.12)_10px)]"
