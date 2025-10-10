@@ -127,7 +127,7 @@ const Page = () => {
 
         <div className="relative overflow-hidden bg-[#002060] p-[50px] text-white md:min-h-[650px]">
           <div className="pointer-events-none absolute -left-16 -top-16 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(74,144,226,0.3)_0%,rgba(74,144,226,0.15)_35%,rgba(74,144,226,0.06)_55%,transparent_75%)]" />
-          <div className="pointer-events-none absolute -bottom-16 -right-16 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(255,149,0,0.25)_0%,rgba(255,149,0,0.12)_35%,rgba(255,149,0,0.05)_55%,transparent_75%)]" />
+          <div className="pointer-events-none absolute -bottom-16 -right-16 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(74,144,226,0.3)_0%,rgba(74,144,226,0.15)_35%,rgba(74,144,226,0.06)_55%,transparent_75%)]" />
           <div className="relative z-10 flex h-full flex-col">
             <div className="inline-block">
               <h3 className="relative text-[32px] font-bold pl-[24px]">
@@ -165,7 +165,8 @@ const Page = () => {
                 24/7 Availability
               </div>
             </div>
-            <div className="mt-10 flex flex-col gap-3">
+            <div className="mt-8 h-px bg-white/20"></div>
+            <div className="mt-6 flex flex-col gap-3">
               <Button
                 variant="ghost"
                 className="w-full rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-8 py-5 text-[16px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] hover:text-white focus-visible:ring-[#FF9500]/40"
