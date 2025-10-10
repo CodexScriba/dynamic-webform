@@ -16,25 +16,25 @@ import { Check, Star, Zap } from "lucide-react"
 const FEATURES = [
   {
     icon: Check,
-    title: "Instant Access",
-    description: "Connect with qualified interpreters in seconds, 24/7",
+    title: "📅 High Success Rate",
+    description: "90% success rate when given 3 days or more.",
   },
   {
     icon: Star,
-    title: "Expert Linguists",
-    description: "Certified professionals with industry specialization",
+    title: "💰 Risk-Free Booking",
+    description: "Free cancellation up to 24 hours.",
   },
   {
     icon: Zap,
-    title: "Fast Turnaround",
-    description: "Quick response times without compromising quality",
+    title: "📱 Flexible Service Options",
+    description: "Video, phone, and on-site interpretation available.",
   },
 ] as const
 
 const Page = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f0f2f5] px-4 py-10">
-      <div className="grid w-full max-w-[1200px] min-h-[650px] grid-cols-1 overflow-hidden rounded-[16px] bg-white shadow-[0_10px_40px_rgba(0,32,96,0.1)] md:grid-cols-[65%_35%]">
+      <div className="grid w-full max-w-[1400px] min-h-[650px] grid-cols-1 overflow-hidden rounded-[16px] bg-white shadow-[0_10px_40px_rgba(0,32,96,0.1)] md:grid-cols-[65%_35%]">
         <div className="relative bg-white p-[50px] md:min-h-[650px]">
           <div
             className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(255,149,0,0.12)_8px,rgba(255,149,0,0.12)_10px)]"
@@ -129,15 +129,14 @@ const Page = () => {
           <div className="pointer-events-none absolute -left-16 -top-16 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(74,144,226,0.3)_0%,rgba(74,144,226,0.15)_35%,rgba(74,144,226,0.06)_55%,transparent_75%)]" />
           <div className="pointer-events-none absolute -bottom-16 -right-16 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(255,149,0,0.25)_0%,rgba(255,149,0,0.12)_35%,rgba(255,149,0,0.05)_55%,transparent_75%)]" />
           <div className="relative z-10 flex h-full flex-col">
-            <div className="inline-block pl-[24px]">
-              <h3 className="relative text-[26px] font-bold">
+            <div className="inline-block">
+              <h3 className="relative text-[32px] font-bold pl-[24px]">
                 <span className="absolute left-0 top-0 h-full w-[5px] rounded bg-[#FF9500]" />
-                Why Choose Us?
+                Why us?
               </h3>
             </div>
-            <p className="mt-4 text-[15px] leading-relaxed text-white/90">
-              Experience the difference of working with industry-leading language professionals
-              trusted by Fortune 500 companies.
+            <p className="mt-4 text-[17px] leading-relaxed text-white/90">
+              Trusted by insurance companies and Fortune 500 companies.
             </p>
             <div className="mt-8 space-y-5">
               {FEATURES.map(({ icon: Icon, title, description }) => (
@@ -149,35 +148,41 @@ const Page = () => {
                     <Icon className="size-5" strokeWidth={2.5} />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-[16px] font-semibold">{title}</h4>
-                    <p className="text-[13px] text-white/85">{description}</p>
+                    <h4 className="text-[18px] font-semibold">{title}</h4>
+                    <p className="text-[15px] text-white/85">{description}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex flex-wrap gap-3 text-[#FFB347]">
-              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[12px] font-semibold">
-                580+ Languages
-              </div>
-              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[12px] font-semibold">
-                35,000+ Interpreters
-              </div>
-              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[12px] font-semibold">
+            <div className="mt-8 flex flex-wrap gap-2 text-[#FFB347]">
+              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-3 py-1.5 text-[11px] font-semibold">
                 ISO Certified
               </div>
+              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-3 py-1.5 text-[11px] font-semibold">
+                On-Site Specialists
+              </div>
+              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-3 py-1.5 text-[11px] font-semibold">
+                24/7 Availability
+              </div>
             </div>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-10 flex flex-col gap-3">
               <Button
                 variant="ghost"
-                className="flex-1 rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-8 py-4 text-[15px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] hover:text-white focus-visible:ring-[#FF9500]/40"
+                className="w-full rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-8 py-5 text-[16px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] hover:text-white focus-visible:ring-[#FF9500]/40"
               >
                 Submit Request
               </Button>
               <Button
                 variant="ghost"
-                className="flex-1 rounded-lg border-2 border-white/40 bg-transparent px-8 py-4 text-[15px] font-bold uppercase tracking-[0.5px] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10 hover:text-white"
+                className="w-full rounded-lg border-2 border-white bg-white/20 px-8 py-5 text-[16px] font-bold uppercase tracking-[0.5px] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/30 hover:text-white"
               >
-                Call Us
+                AI Assisted Submit
+              </Button>
+              <Button
+                variant="ghost"
+                className="w-full rounded-lg bg-transparent px-8 py-4 text-[15px] font-semibold uppercase tracking-[0.5px] text-white/70 transition-all duration-300 hover:text-white"
+              >
+                Refresh
               </Button>
             </div>
           </div>
