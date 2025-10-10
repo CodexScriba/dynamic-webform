@@ -11,7 +11,16 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { Check, Star, Zap } from "lucide-react"
+import {
+  Briefcase,
+  Building2,
+  Check,
+  FileText,
+  Mail,
+  Star,
+  UserRound,
+  Zap,
+} from "lucide-react"
 
 const FEATURES = [
   {
@@ -31,6 +40,19 @@ const FEATURES = [
   },
 ] as const
 
+const labelClasses = "text-sm font-medium text-slate-600"
+const inputClasses =
+  "h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+const selectTriggerClasses =
+  "h-11 w-full rounded-2xl border-none bg-slate-50 pl-3 pr-4 text-left shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0 justify-start gap-3"
+const selectContentClasses = "rounded-2xl border border-slate-200 bg-white shadow-lg"
+const textareaClasses =
+  "rounded-2xl border-none bg-slate-50 pl-12 pr-4 py-3 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+const fieldIconClasses =
+  "pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400"
+const textAreaIconClasses =
+  "pointer-events-none absolute left-4 top-4 size-4 text-slate-400"
+
 const Page = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f0f2f5] px-4 py-10">
@@ -47,79 +69,82 @@ const Page = () => {
             <p className="mt-5 text-[14px] leading-[1.7] text-[#666666]">
               Connect with our expert team for professional language services
             </p>
-            <form className="mt-[35px] space-y-[22px]">
-              <div className="space-y-2">
-                <Label
-                  htmlFor="name"
-                  className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]"
-                >
-                  Full Name
-                </Label>
-                <Input
-                  id="name"
-                  placeholder="Enter your name"
-                  className="h-[52px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 text-[14px] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
-              </div>
+            <form className="mt-[35px] space-y-10">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className={labelClasses}>
+                    Full Name
+                  </Label>
+                  <div className="relative">
+                    <UserRound className={fieldIconClasses} aria-hidden="true" />
+                    <Input
+                      id="name"
+                      placeholder="Enter your name"
+                      className={inputClasses}
+                    />
+                  </div>
+                </div>
 
-              <div className="space-y-2">
-                <Label
-                  htmlFor="email"
-                  className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]"
-                >
-                  Email Address
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your.email@company.com"
-                  className="h-[52px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 text-[14px] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email" className={labelClasses}>
+                    Email Address
+                  </Label>
+                  <div className="relative">
+                    <Mail className={fieldIconClasses} aria-hidden="true" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="your.email@company.com"
+                      className={inputClasses}
+                    />
+                  </div>
+                </div>
 
-              <div className="space-y-2">
-                <Label
-                  htmlFor="company"
-                  className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]"
-                >
-                  Company
-                </Label>
-                <Input
-                  id="company"
-                  placeholder="Company name"
-                  className="h-[52px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 text-[14px] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="company" className={labelClasses}>
+                    Company
+                  </Label>
+                  <div className="relative">
+                    <Building2 className={fieldIconClasses} aria-hidden="true" />
+                    <Input
+                      id="company"
+                      placeholder="Company name"
+                      className={inputClasses}
+                    />
+                  </div>
+                </div>
 
-              <div className="space-y-2">
-                <Label className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]">
-                  Service Type
-                </Label>
-                <Select>
-                  <SelectTrigger className="h-[52px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 text-left text-[14px] text-[#444444] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0">
-                    <SelectValue placeholder="Choose service" />
-                  </SelectTrigger>
-                  <SelectContent className="border-none bg-white text-[#444444] shadow-[0_12px_30px_rgba(0,32,96,0.18)]">
-                    <SelectItem value="interpretation">Interpretation</SelectItem>
-                    <SelectItem value="translation">Translation</SelectItem>
-                    <SelectItem value="localization">Localization</SelectItem>
-                    <SelectItem value="consulting">Consulting</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                <div className="space-y-2">
+                  <Label className={labelClasses}>
+                    Service Type
+                  </Label>
+                  <Select>
+                    <SelectTrigger className={selectTriggerClasses}>
+                      <Briefcase className="size-4 text-slate-400" aria-hidden="true" />
+                      <SelectValue placeholder="Choose service" />
+                    </SelectTrigger>
+                    <SelectContent className={selectContentClasses}>
+                      <SelectItem value="interpretation">Interpretation</SelectItem>
+                      <SelectItem value="translation">Translation</SelectItem>
+                      <SelectItem value="localization">Localization</SelectItem>
+                      <SelectItem value="consulting">Consulting</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              <div className="space-y-2">
-                <Label
-                  htmlFor="message"
-                  className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[#002060]"
-                >
-                  Project Details
-                </Label>
-                <Textarea
-                  id="message"
-                  placeholder="Describe your project requirements..."
-                  className="min-h-[110px] rounded-md border-2 border-[#E8E8E8] bg-[#FAFAFA] px-4 py-3 text-[14px] transition-all duration-300 focus-visible:border-[#FF9500] focus-visible:bg-white focus-visible:shadow-[0_4px_12px_rgba(255,149,0,0.15)] focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
+                <div className="space-y-2 md:col-span-2">
+                  <Label htmlFor="message" className={labelClasses}>
+                    Project Details
+                  </Label>
+                  <div className="relative">
+                    <FileText className={textAreaIconClasses} aria-hidden="true" />
+                    <Textarea
+                      id="message"
+                      placeholder="Describe your project requirements..."
+                      className={textareaClasses}
+                    />
+                  </div>
+                </div>
               </div>
             </form>
           </div>
@@ -165,7 +190,7 @@ const Page = () => {
                 24/7 Availability
               </div>
             </div>
-            <div className="mt-8 h-px bg-white/20"></div>
+            <div className="mt-8 h-px bg-white/20" />
             <div className="mt-6 flex flex-col gap-3">
               <Button
                 variant="ghost"
