@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
-import { Check, Globe, Hash, Mail, Phone, Star, UserRound, Video, MapPin, Zap } from "lucide-react"
+import { Calendar, Check, Clock, DollarSign, FileText, Globe, Hash, Link as LinkIcon, Mail, MapPinned, MessageSquare, Phone, Star, UserRound, Video, MapPin, Zap } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 
@@ -34,6 +35,28 @@ const SERVICE_TYPES = [
   { id: "onsite", label: "ONSITE", icon: MapPin },
 ] as const
 
+const TIMEZONES = [
+  { value: "America/New_York", label: "America/New York (EST/EDT)" },
+  { value: "America/Chicago", label: "America/Chicago (CST/CDT)" },
+  { value: "America/Denver", label: "America/Denver (MST/MDT)" },
+  { value: "America/Los_Angeles", label: "America/Los Angeles (PST/PDT)" },
+  { value: "America/Phoenix", label: "America/Phoenix (MST)" },
+  { value: "America/Anchorage", label: "America/Anchorage (AKST/AKDT)" },
+  { value: "Pacific/Honolulu", label: "Pacific/Honolulu (HST)" },
+  { value: "UTC", label: "UTC (Coordinated Universal Time)" },
+] as const
+
+const DURATION_OPTIONS = [
+  { value: "0.5", label: "0.5 hours (30 min)" },
+  { value: "1", label: "1 hour" },
+  { value: "1.5", label: "1.5 hours" },
+  { value: "2", label: "2 hours" },
+  { value: "2.5", label: "2.5 hours" },
+  { value: "3", label: "3 hours" },
+  { value: "4", label: "4 hours" },
+  { value: "8", label: "8 hours (full day)" },
+] as const
+
 const labelClasses = "text-sm font-medium text-slate-600"
 const inputClasses =
   "h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
@@ -50,6 +73,19 @@ type RequestQuoteFormValues = {
   interpreterName: string
   interpreterGender: string
   appointmentDetails: string
+  // Appointment Info
+  address: string
+  timezone: string
+  appointmentDate: string
+  appointmentTime: string
+  estimatedDuration: string
+  // VRI Options
+  vriLinkOption: string
+  vriCustomLink: string
+  // Additional
+  additionalComments: string
+  costCenterNumber: string
+  facilityPhoneNumber: string
 }
 
 const Page = () => {
@@ -67,10 +103,22 @@ const Page = () => {
       interpreterName: "",
       interpreterGender: "",
       appointmentDetails: "",
+      address: "",
+      timezone: "",
+      appointmentDate: "",
+      appointmentTime: "",
+      estimatedDuration: "",
+      vriLinkOption: "lls",
+      vriCustomLink: "",
+      additionalComments: "",
+      costCenterNumber: "",
+      facilityPhoneNumber: "",
     },
   })
 
   const preferredInterpreter = form.watch("preferredInterpreter")
+  const serviceType = form.watch("serviceType")
+  const vriLinkOption = form.watch("vriLinkOption")
 
   const handleSubmit = (values: RequestQuoteFormValues) => {
     console.log("Request quote submission", values)
@@ -368,10 +416,41 @@ const Page = () => {
                         <FormLabel className={labelClasses}>
                           Appointment General Details *
                         </FormLabel>
+                        <div className="relative">
+                          <FileText className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              placeholder="Follow-up, Consultation..."
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* Section 3 - Appointment Info */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#002060]">📅 Appointment Info</h3>
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                  </div>
+
+                  {/* Address/Location */}
+                  <FormField
+                    control={form.control}
+                    name="address"
+                    rules={{ required: "Address/Location is required" }}
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Address / Location *</FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Follow-up, Consultation..."
-                            className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            placeholder="Enter appointment address or location"
+                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
                             {...field}
                           />
                         </FormControl>
@@ -379,6 +458,255 @@ const Page = () => {
                       </FormItem>
                     )}
                   />
+
+                  {/* Timezone and Duration */}
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="timezone"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Time Zone</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                                <SelectValue placeholder="Select timezone" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {TIMEZONES.map((tz) => (
+                                <SelectItem key={tz.value} value={tz.value}>
+                                  {tz.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="estimatedDuration"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Estimated Duration</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                                <SelectValue placeholder="Select duration" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {DURATION_OPTIONS.map((duration) => (
+                                <SelectItem key={duration.value} value={duration.value}>
+                                  {duration.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  {/* Date and Time */}
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="appointmentDate"
+                      rules={{ required: "Appointment date is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Date of Appointment *</FormLabel>
+                          <div className="relative">
+                            <Calendar className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                type="date"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="appointmentTime"
+                      rules={{ required: "Appointment time is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Time of Appointment *</FormLabel>
+                          <div className="relative">
+                            <Clock className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                type="time"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+
+                {/* Section 4 - VRI Options */}
+                {serviceType === "video" && (
+                  <div className="space-y-6 border-t border-slate-200 pt-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#002060]">🖥 VRI Options</h3>
+                      <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="vriLinkOption"
+                      rules={{ required: "VRI link option is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel className={labelClasses}>VRI Link Option *</FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="space-y-3"
+                            >
+                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#FF9500]/50">
+                                <RadioGroupItem value="own" id="own" />
+                                <label
+                                  htmlFor="own"
+                                  className="flex-1 cursor-pointer text-sm font-medium text-slate-700"
+                                >
+                                  I will use my own link
+                                </label>
+                              </div>
+                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#FF9500]/50">
+                                <RadioGroupItem value="lls" id="lls" />
+                                <label
+                                  htmlFor="lls"
+                                  className="flex-1 cursor-pointer text-sm font-medium text-slate-700"
+                                >
+                                  Provide a HIPAA-compliant link (LLS)
+                                </label>
+                              </div>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {vriLinkOption === "own" && (
+                      <FormField
+                        control={form.control}
+                        name="vriCustomLink"
+                        render={({ field }) => (
+                          <FormItem className="space-y-2">
+                            <FormLabel className={labelClasses}>Provide Your Link</FormLabel>
+                            <div className="relative">
+                              <LinkIcon className={fieldIconClasses} aria-hidden="true" />
+                              <FormControl>
+                                <Input
+                                  type="url"
+                                  placeholder="https://example.com/meeting"
+                                  className={inputClasses}
+                                  {...field}
+                                />
+                              </FormControl>
+                            </div>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+                  </div>
+                )}
+
+                {/* Section 5 - Additional Sections and Comments */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#002060]">💬 Additional Sections and Comments</h3>
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                  </div>
+
+                  {/* Additional Comments */}
+                  <FormField
+                    control={form.control}
+                    name="additionalComments"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Additional Comments</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Enter any additional comments..."
+                            className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            {...field}
+                          />
+                        </FormControl>
+                        <p className="text-xs text-slate-500">
+                          Do not include PHI or patient identifiers.
+                        </p>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Cost Center and Facility Phone */}
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="costCenterNumber"
+                      rules={{ required: "Cost center number is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Cost Center Number *</FormLabel>
+                          <div className="relative">
+                            <DollarSign className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                placeholder="Enter cost center number"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="facilityPhoneNumber"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Facility Phone Number</FormLabel>
+                          <div className="relative">
+                            <Phone className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                type="tel"
+                                placeholder="(555) 123-4567"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                 </div>
               </form>
             </Form>
