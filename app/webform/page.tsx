@@ -1,9 +1,743 @@
-import React from 'react'
+"use client"
 
-const page = () => {
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
+import { Textarea } from "@/components/ui/textarea"
+import { Calendar, Check, Clock, DollarSign, FileText, Globe, Hash, Link as LinkIcon, Mail, Phone, Star, UserRound, Video, MapPin, Zap } from "lucide-react"
+import { useForm } from "react-hook-form"
+
+const FEATURES = [
+  {
+    icon: Check,
+    title: "📅 High Success Rate",
+    description: "90% success rate when given 3 days or more.",
+  },
+  {
+    icon: Star,
+    title: "💰 Risk-Free Booking",
+    description: "Free cancellation up to 24 hours.",
+  },
+  {
+    icon: Zap,
+    title: "📱 Flexible Service Options",
+    description: "Video, phone, and on-site interpretation available.",
+  },
+] as const
+
+const SERVICE_TYPES = [
+  { id: "phone", label: "Over-the-Phone", icon: Phone },
+  { id: "video", label: "Video Schedule", icon: Video },
+  { id: "onsite", label: "ONSITE", icon: MapPin },
+] as const
+
+const TIMEZONES = [
+  { value: "America/New_York", label: "America/New York (EST/EDT)" },
+  { value: "America/Chicago", label: "America/Chicago (CST/CDT)" },
+  { value: "America/Denver", label: "America/Denver (MST/MDT)" },
+  { value: "America/Los_Angeles", label: "America/Los Angeles (PST/PDT)" },
+  { value: "America/Phoenix", label: "America/Phoenix (MST)" },
+  { value: "America/Anchorage", label: "America/Anchorage (AKST/AKDT)" },
+  { value: "Pacific/Honolulu", label: "Pacific/Honolulu (HST)" },
+  { value: "UTC", label: "UTC (Coordinated Universal Time)" },
+] as const
+
+const DURATION_OPTIONS = [
+  { value: "0.5", label: "0.5 hours (30 min)" },
+  { value: "1", label: "1 hour" },
+  { value: "1.5", label: "1.5 hours" },
+  { value: "2", label: "2 hours" },
+  { value: "2.5", label: "2.5 hours" },
+  { value: "3", label: "3 hours" },
+  { value: "4", label: "4 hours" },
+  { value: "8", label: "8 hours (full day)" },
+] as const
+
+const labelClasses = "text-sm font-medium text-slate-600"
+const inputClasses =
+  "h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+const fieldIconClasses =
+  "pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400"
+type RequestQuoteFormValues = {
+  clientId: string
+  requestorName: string
+  requestorEmail: string
+  requestorPhone: string
+  serviceType: string
+  language: string
+  preferredInterpreter: string
+  interpreterName: string
+  interpreterGender: string
+  appointmentDetails: string
+  // Appointment Info
+  address: string
+  timezone: string
+  appointmentDate: string
+  appointmentTime: string
+  estimatedDuration: string
+  // VRI Options
+  vriLinkOption: string
+  vriCustomLink: string
+  // Additional
+  additionalComments: string
+  costCenterNumber: string
+  facilityPhoneNumber: string
+}
+
+const Page = () => {
+  const form = useForm<RequestQuoteFormValues>({
+    defaultValues: {
+      clientId: "",
+      requestorName: "",
+      requestorEmail: "",
+      requestorPhone: "",
+      serviceType: "",
+      language: "",
+      preferredInterpreter: "false",
+      interpreterName: "",
+      interpreterGender: "",
+      appointmentDetails: "",
+      address: "",
+      timezone: "",
+      appointmentDate: "",
+      appointmentTime: "",
+      estimatedDuration: "",
+      vriLinkOption: "lls",
+      vriCustomLink: "",
+      additionalComments: "",
+      costCenterNumber: "",
+      facilityPhoneNumber: "",
+    },
+  })
+
+  const preferredInterpreter = form.watch("preferredInterpreter")
+  const serviceType = form.watch("serviceType")
+  const vriLinkOption = form.watch("vriLinkOption")
+
+  const handleSubmit = (values: RequestQuoteFormValues) => {
+    console.log("Request quote submission", values)
+  }
+
   return (
-    <div>page</div>
+    <div className="flex min-h-screen items-center justify-center bg-[#f0f2f5] px-4 py-6">
+      <div className="w-full max-w-5xl overflow-hidden rounded-[16px] bg-white shadow-[0_10px_40px_rgba(0,32,96,0.1)]">
+        <div className="relative bg-white p-8 md:p-12">
+          <div
+            className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(255,149,0,0.12)_8px,rgba(255,149,0,0.12)_10px)]"
+            style={{ clipPath: "polygon(100% 0, 100% 100%, 0 0)" }}
+          />
+
+          <div className="relative z-10">
+            <h2 className="text-3xl font-bold text-[#002060]">Request a Quote</h2>
+            <div className="mt-3 h-1 w-[60px] rounded bg-[#FF9500]" />
+            <p className="mt-3 text-sm leading-[1.7] text-[#666666]">
+              Connect with our expert team for professional language services
+            </p>
+            <Form {...form}>
+              <form
+                className="mt-8 space-y-8"
+                onSubmit={form.handleSubmit(handleSubmit)}
+                noValidate
+              >
+                <div className="grid gap-6 md:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="clientId"
+                    rules={{ required: "Client ID is required" }}
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Client ID</FormLabel>
+                        <div className="relative">
+                          <Hash className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              placeholder="Enter client ID"
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="requestorName"
+                    rules={{ required: "Requestor name is required" }}
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Requestor Name</FormLabel>
+                        <div className="relative">
+                          <UserRound className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              placeholder="Enter requestor name"
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="requestorEmail"
+                    rules={{
+                      required: "Requestor email address is required",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                        message: "Enter a valid email address",
+                      },
+                    }}
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>
+                          Requestor Email Address
+                        </FormLabel>
+                        <div className="relative">
+                          <Mail className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              type="email"
+                              placeholder="requestor@company.com"
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="requestorPhone"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>
+                          Requestor Phone Number
+                        </FormLabel>
+                        <div className="relative">
+                          <Phone className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              type="tel"
+                              placeholder="(555) 123-4567"
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* Service Details Section */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#002060]">Service Details</h3>
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                  </div>
+
+                  {/* Service Type */}
+                  <FormField
+                    control={form.control}
+                    name="serviceType"
+                    rules={{ required: "Service type is required" }}
+                    render={({ field }) => (
+                      <FormItem className="space-y-3">
+                        <FormLabel className={labelClasses}>Service Type *</FormLabel>
+                        <FormControl>
+                          <div className="grid grid-cols-3 gap-3">
+                            {SERVICE_TYPES.map((service) => {
+                              const Icon = service.icon
+                              const isSelected = field.value === service.id
+                              return (
+                                <button
+                                  key={service.id}
+                                  type="button"
+                                  onClick={() => {
+                                    field.onChange(service.id)
+                                  }}
+                                  className={`flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 transition-all duration-200 ${
+                                    isSelected
+                                      ? "border-[#FF9500] bg-[#FF9500]/10 shadow-md"
+                                      : "border-slate-200 bg-white hover:border-[#FF9500]/50 hover:bg-slate-50"
+                                  }`}
+                                >
+                                  <Icon
+                                    className={`size-6 ${isSelected ? "text-[#FF9500]" : "text-slate-600"}`}
+                                  />
+                                  <span
+                                    className={`text-sm font-medium ${
+                                      isSelected ? "text-[#FF9500]" : "text-slate-700"
+                                    }`}
+                                  >
+                                    {service.label}
+                                  </span>
+                                </button>
+                              )
+                            })}
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Language, Gender Preference, and Preferred Interpreter - Single Row */}
+                  <div className="grid gap-6 md:grid-cols-3">
+                    <FormField
+                      control={form.control}
+                      name="language"
+                      rules={{ required: "Language is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Language *</FormLabel>
+                          <div className="relative">
+                            <Globe className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                placeholder="e.g., Spanish, Mandarin"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="interpreterGender"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>
+                            Interpreter Gender Preference
+                          </FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                                <SelectValue placeholder="Select preference" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="male">Male</SelectItem>
+                              <SelectItem value="female">Female</SelectItem>
+                              <SelectItem value="no-preference">Rather not say</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="preferredInterpreter"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>
+                            Preferred Interpreter *
+                          </FormLabel>
+                          <div className="flex h-11 items-center rounded-2xl border-none bg-slate-50 px-4 shadow-inner">
+                            <FormControl>
+                              <Switch
+                                checked={field.value === "true"}
+                                onCheckedChange={(checked) => {
+                                  field.onChange(checked ? "true" : "false")
+                                  if (!checked) {
+                                    form.setValue("interpreterName", "")
+                                  }
+                                }}
+                                className="data-[state=checked]:bg-[#FF9500]"
+                              />
+                            </FormControl>
+                            <span className="ml-3 text-sm font-medium text-slate-700">
+                              {field.value === "true" ? "Yes" : "No"}
+                            </span>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  {/* Conditional Interpreter Name */}
+                  {preferredInterpreter === "true" && (
+                    <FormField
+                      control={form.control}
+                      name="interpreterName"
+                      rules={{ required: "Interpreter name is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Interpreter Name *</FormLabel>
+                          <div className="relative">
+                            <UserRound className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                placeholder="Enter interpreter name"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  )}
+
+                  {/* Appointment Details */}
+                  <FormField
+                    control={form.control}
+                    name="appointmentDetails"
+                    rules={{ required: "Appointment details are required" }}
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>
+                          Appointment General Details *
+                        </FormLabel>
+                        <div className="relative">
+                          <FileText className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              placeholder="Follow-up, Consultation..."
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* Section 3 - Appointment Info */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#002060]">📅 Appointment Info</h3>
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                  </div>
+
+                  {/* Address/Location */}
+                  <FormField
+                    control={form.control}
+                    name="address"
+                    rules={{ required: "Address/Location is required" }}
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Address / Location *</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Enter appointment address or location"
+                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Timezone and Duration */}
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="timezone"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Time Zone</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                                <SelectValue placeholder="Select timezone" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {TIMEZONES.map((tz) => (
+                                <SelectItem key={tz.value} value={tz.value}>
+                                  {tz.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="estimatedDuration"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Estimated Duration</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                                <SelectValue placeholder="Select duration" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {DURATION_OPTIONS.map((duration) => (
+                                <SelectItem key={duration.value} value={duration.value}>
+                                  {duration.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  {/* Date and Time */}
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="appointmentDate"
+                      rules={{ required: "Appointment date is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Date of Appointment *</FormLabel>
+                          <div className="relative">
+                            <Calendar className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                type="date"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="appointmentTime"
+                      rules={{ required: "Appointment time is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Time of Appointment *</FormLabel>
+                          <div className="relative">
+                            <Clock className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                type="time"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+
+                {/* Section 4 - VRI Options */}
+                {serviceType === "video" && (
+                  <div className="space-y-6 border-t border-slate-200 pt-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#002060]">🖥 VRI Options</h3>
+                      <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="vriLinkOption"
+                      rules={{ required: "VRI link option is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel className={labelClasses}>VRI Link Option *</FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="space-y-3"
+                            >
+                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#FF9500]/50">
+                                <RadioGroupItem value="own" id="own" />
+                                <label
+                                  htmlFor="own"
+                                  className="flex-1 cursor-pointer text-sm font-medium text-slate-700"
+                                >
+                                  I will use my own link
+                                </label>
+                              </div>
+                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#FF9500]/50">
+                                <RadioGroupItem value="lls" id="lls" />
+                                <label
+                                  htmlFor="lls"
+                                  className="flex-1 cursor-pointer text-sm font-medium text-slate-700"
+                                >
+                                  Provide a HIPAA-compliant link (LLS)
+                                </label>
+                              </div>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {vriLinkOption === "own" && (
+                      <FormField
+                        control={form.control}
+                        name="vriCustomLink"
+                        render={({ field }) => (
+                          <FormItem className="space-y-2">
+                            <FormLabel className={labelClasses}>Provide Your Link</FormLabel>
+                            <div className="relative">
+                              <LinkIcon className={fieldIconClasses} aria-hidden="true" />
+                              <FormControl>
+                                <Input
+                                  type="url"
+                                  placeholder="https://example.com/meeting"
+                                  className={inputClasses}
+                                  {...field}
+                                />
+                              </FormControl>
+                            </div>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+                  </div>
+                )}
+
+                {/* Section 5 - Additional Sections and Comments */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#002060]">💬 Additional Sections and Comments</h3>
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                  </div>
+
+                  {/* Additional Comments */}
+                  <FormField
+                    control={form.control}
+                    name="additionalComments"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Additional Comments</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Enter any additional comments..."
+                            className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            {...field}
+                          />
+                        </FormControl>
+                        <p className="text-xs text-slate-500">
+                          Do not include PHI or patient identifiers.
+                        </p>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Cost Center and Facility Phone */}
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="costCenterNumber"
+                      rules={{ required: "Cost center number is required" }}
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Cost Center Number *</FormLabel>
+                          <div className="relative">
+                            <DollarSign className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                placeholder="Enter cost center number"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="facilityPhoneNumber"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Facility Phone Number</FormLabel>
+                          <div className="relative">
+                            <Phone className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                type="tel"
+                                placeholder="(555) 123-4567"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+
+                {/* CTA Section at Bottom */}
+                <div className="border-t border-slate-200 pt-8">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                    <Button
+                      variant="ghost"
+                      className="rounded-lg bg-transparent px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.5px] text-slate-600 transition-all duration-300 hover:bg-slate-100 hover:text-slate-800"
+                      type="button"
+                    >
+                      Refresh
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="rounded-lg border-2 border-[#FF9500] bg-white px-6 py-2.5 text-sm font-bold uppercase tracking-[0.5px] text-[#FF9500] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#FF9500]/10"
+                      type="button"
+                    >
+                      AI Assisted Submit
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-6 py-2.5 text-sm font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] hover:text-white focus-visible:ring-[#FF9500]/40"
+                      type="submit"
+                    >
+                      Submit Request
+                    </Button>
+                  </div>
+                </div>
+              </form>
+            </Form>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
-export default page
+export default Page

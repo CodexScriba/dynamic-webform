@@ -88,19 +88,10 @@ type RequestQuoteFormValues = {
   facilityPhoneNumber: string
 }
 
-const STEPS = [
-  { id: 1, title: "Contact Info", description: "Your details" },
-  { id: 2, title: "Service Details", description: "Service requirements" },
-  { id: 3, title: "Appointment", description: "Schedule details" },
-  { id: 4, title: "Additional", description: "Final details" },
-] as const
-
 const Page = () => {
-  const [currentStep, setCurrentStep] = useState(1)
   const [selectedServiceType, setSelectedServiceType] = useState<string>("")
 
   const form = useForm<RequestQuoteFormValues>({
-    mode: "onChange",
     defaultValues: {
       clientId: "",
       requestorName: "",
@@ -129,18 +120,6 @@ const Page = () => {
   const serviceType = form.watch("serviceType")
   const vriLinkOption = form.watch("vriLinkOption")
 
-  const handleNext = () => {
-    if (currentStep < STEPS.length) {
-      setCurrentStep(currentStep + 1)
-    }
-  }
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1)
-    }
-  }
-
   const handleSubmit = (values: RequestQuoteFormValues) => {
     console.log("Request quote submission", values)
   }
@@ -160,54 +139,12 @@ const Page = () => {
             <p className="mt-5 text-[14px] leading-[1.7] text-[#666666]">
               Connect with our expert team for professional language services
             </p>
-
-            {/* Step Indicator */}
-            <div className="mt-8 mb-8">
-              <div className="flex items-center justify-between">
-                {STEPS.map((step, index) => (
-                  <div key={step.id} className="flex flex-1 items-center">
-                    <div className="flex flex-col items-center flex-1">
-                      <div
-                        className={`flex size-10 items-center justify-center rounded-full border-2 transition-all duration-300 ${
-                          currentStep >= step.id
-                            ? "border-[#FF9500] bg-[#FF9500] text-white"
-                            : "border-slate-300 bg-white text-slate-400"
-                        }`}
-                      >
-                        <span className="text-sm font-semibold">{step.id}</span>
-                      </div>
-                      <div className="mt-2 text-center">
-                        <div
-                          className={`text-xs font-semibold ${
-                            currentStep >= step.id ? "text-[#FF9500]" : "text-slate-400"
-                          }`}
-                        >
-                          {step.title}
-                        </div>
-                        <div className="text-[10px] text-slate-400">{step.description}</div>
-                      </div>
-                    </div>
-                    {index < STEPS.length - 1 && (
-                      <div
-                        className={`h-0.5 flex-1 transition-all duration-300 ${
-                          currentStep > step.id ? "bg-[#FF9500]" : "bg-slate-300"
-                        }`}
-                        style={{ marginTop: "-45px" }}
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <Form {...form}>
               <form
                 className="mt-[35px] space-y-10"
                 onSubmit={form.handleSubmit(handleSubmit)}
                 noValidate
               >
-                {/* Step 1: Contact Information */}
-                {currentStep === 1 && (
                 <div className="grid gap-6 md:grid-cols-2">
                   <FormField
                     control={form.control}
@@ -309,11 +246,9 @@ const Page = () => {
                     )}
                   />
                 </div>
-                )}
 
-                {/* Step 2: Service Details Section */}
-                {currentStep === 2 && (
-                <div className="space-y-6">
+                {/* Service Details Section */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">Service Details</h3>
                     <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
@@ -496,11 +431,9 @@ const Page = () => {
                     )}
                   />
                 </div>
-                )}
 
-                {/* Step 3: Appointment Info */}
-                {currentStep === 3 && (
-                <div className="space-y-6">
+                {/* Section 3 - Appointment Info */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">📅 Appointment Info</h3>
                     <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
@@ -626,14 +559,10 @@ const Page = () => {
                     />
                   </div>
                 </div>
-                )}
 
-                {/* Step 4: Additional Options */}
-                {currentStep === 4 && (
-                <>
-                {/* VRI Options */}
+                {/* Section 4 - VRI Options */}
                 {serviceType === "video" && (
-                  <div className="space-y-6">
+                  <div className="space-y-6 border-t border-slate-200 pt-8">
                     <div>
                       <h3 className="text-lg font-semibold text-[#002060]">🖥 VRI Options</h3>
                       <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
@@ -703,8 +632,8 @@ const Page = () => {
                   </div>
                 )}
 
-                {/* Additional Sections and Comments */}
-                <div className="space-y-6">
+                {/* Section 5 - Additional Sections and Comments */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">💬 Additional Sections and Comments</h3>
                     <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
@@ -778,44 +707,6 @@ const Page = () => {
                       )}
                     />
                   </div>
-                </div>
-                </>
-                )}
-
-                {/* Navigation Buttons */}
-                <div className="flex justify-between pt-6 border-t border-slate-200">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleBack}
-                    disabled={currentStep === 1}
-                    className={`rounded-lg px-6 py-2 font-semibold transition-all ${
-                      currentStep === 1
-                        ? "opacity-50 cursor-not-allowed"
-                        : "hover:bg-slate-100"
-                    }`}
-                  >
-                    Back
-                  </Button>
-                  <div className="text-sm text-slate-500">
-                    Step {currentStep} of {STEPS.length}
-                  </div>
-                  {currentStep < STEPS.length ? (
-                    <Button
-                      type="button"
-                      onClick={handleNext}
-                      className="rounded-lg bg-[#FF9500] px-6 py-2 font-semibold text-white hover:bg-[#FF8500]"
-                    >
-                      Next
-                    </Button>
-                  ) : (
-                    <Button
-                      type="submit"
-                      className="rounded-lg bg-[#FF9500] px-6 py-2 font-semibold text-white hover:bg-[#FF8500]"
-                    >
-                      Complete
-                    </Button>
-                  )}
                 </div>
               </form>
             </Form>
