@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
-import { Calendar, Check, Clock, DollarSign, FileText, Globe, Hash, Link as LinkIcon, Mail, Phone, Star, UserRound, Video, MapPin, Zap } from "lucide-react"
+import { Building2, Calendar, Check, Clock, DollarSign, FileText, Globe, Hash, Link as LinkIcon, Mail, Phone, Star, UserRound, Video, MapPin, Zap } from "lucide-react"
 import { useForm } from "react-hook-form"
 
 const FEATURES = [
@@ -62,6 +62,7 @@ const inputClasses =
 const fieldIconClasses =
   "pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400"
 type RequestQuoteFormValues = {
+  organizationName: string
   clientId: string
   requestorName: string
   requestorEmail: string
@@ -72,6 +73,7 @@ type RequestQuoteFormValues = {
   interpreterName: string
   interpreterGender: string
   appointmentDetails: string
+  checkInInstructions: string
   // Appointment Info
   address: string
   timezone: string
@@ -82,14 +84,22 @@ type RequestQuoteFormValues = {
   vriLinkOption: string
   vriCustomLink: string
   // Additional
+  pointOfContactName: string
+  onsiteContactName: string
+  doctorName: string
   additionalComments: string
   costCenterNumber: string
   facilityPhoneNumber: string
+  billingAddress: string
+  billingContactName: string
+  billingContactPhone: string
+  billingContactEmail: string
 }
 
 const Page = () => {
   const form = useForm<RequestQuoteFormValues>({
     defaultValues: {
+      organizationName: "",
       clientId: "",
       requestorName: "",
       requestorEmail: "",
@@ -100,6 +110,7 @@ const Page = () => {
       interpreterName: "",
       interpreterGender: "",
       appointmentDetails: "",
+      checkInInstructions: "",
       address: "",
       timezone: "",
       appointmentDate: "",
@@ -107,9 +118,16 @@ const Page = () => {
       estimatedDuration: "",
       vriLinkOption: "lls",
       vriCustomLink: "",
+      pointOfContactName: "",
+      onsiteContactName: "",
+      doctorName: "",
       additionalComments: "",
       costCenterNumber: "",
       facilityPhoneNumber: "",
+      billingAddress: "",
+      billingContactName: "",
+      billingContactPhone: "",
+      billingContactEmail: "",
     },
   })
 
@@ -151,11 +169,31 @@ const Page = () => {
                 <div className="grid gap-6 md:grid-cols-2">
                   <FormField
                     control={form.control}
-                    name="clientId"
-                    rules={{ required: "Client ID is required" }}
+                    name="organizationName"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className={labelClasses}>Client ID</FormLabel>
+                        <FormLabel className={labelClasses}>Name of your company/organization</FormLabel>
+                        <div className="relative">
+                          <UserRound className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              placeholder="Enter organization name"
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="clientId"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Client ID (if applicable)</FormLabel>
                         <div className="relative">
                           <Hash className={fieldIconClasses} aria-hidden="true" />
                           <FormControl>
@@ -174,7 +212,6 @@ const Page = () => {
                   <FormField
                     control={form.control}
                     name="requestorName"
-                    rules={{ required: "Requestor name is required" }}
                     render={({ field }) => (
                       <FormItem className="space-y-2">
                         <FormLabel className={labelClasses}>Requestor Name</FormLabel>
@@ -196,14 +233,6 @@ const Page = () => {
                   <FormField
                     control={form.control}
                     name="requestorEmail"
-                    rules={{
-                      required: "Requestor email address is required",
-                      pattern: {
-                        value:
-                          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                        message: "Enter a valid email address",
-                      },
-                    }}
                     render={({ field }) => (
                       <FormItem className="space-y-2">
                         <FormLabel className={labelClasses}>
@@ -261,10 +290,9 @@ const Page = () => {
                   <FormField
                     control={form.control}
                     name="serviceType"
-                    rules={{ required: "Service type is required" }}
                     render={({ field }) => (
                       <FormItem className="space-y-3">
-                        <FormLabel className={labelClasses}>Service Type *</FormLabel>
+                        <FormLabel className={labelClasses}>Service Type</FormLabel>
                         <FormControl>
                           <div className="grid grid-cols-3 gap-3">
                             {SERVICE_TYPES.map((service) => {
@@ -308,10 +336,9 @@ const Page = () => {
                     <FormField
                       control={form.control}
                       name="language"
-                      rules={{ required: "Language is required" }}
                       render={({ field }) => (
                         <FormItem className="space-y-2">
-                          <FormLabel className={labelClasses}>Language *</FormLabel>
+                          <FormLabel className={labelClasses}>Language</FormLabel>
                           <div className="relative">
                             <Globe className={fieldIconClasses} aria-hidden="true" />
                             <FormControl>
@@ -358,7 +385,7 @@ const Page = () => {
                       render={({ field }) => (
                         <FormItem className="space-y-2">
                           <FormLabel className={labelClasses}>
-                            Preferred Interpreter *
+                            Preferred Interpreter
                           </FormLabel>
                           <div className="flex h-11 items-center rounded-2xl border-none bg-slate-50 px-4 shadow-inner">
                             <FormControl>
@@ -388,10 +415,9 @@ const Page = () => {
                     <FormField
                       control={form.control}
                       name="interpreterName"
-                      rules={{ required: "Interpreter name is required" }}
                       render={({ field }) => (
                         <FormItem className="space-y-2">
-                          <FormLabel className={labelClasses}>Interpreter Name *</FormLabel>
+                          <FormLabel className={labelClasses}>Interpreter Name</FormLabel>
                           <div className="relative">
                             <UserRound className={fieldIconClasses} aria-hidden="true" />
                             <FormControl>
@@ -412,17 +438,83 @@ const Page = () => {
                   <FormField
                     control={form.control}
                     name="appointmentDetails"
-                    rules={{ required: "Appointment details are required" }}
                     render={({ field }) => (
                       <FormItem className="space-y-2">
                         <FormLabel className={labelClasses}>
-                          Appointment General Details *
+                          Appointment General Details
                         </FormLabel>
                         <div className="relative">
                           <FileText className={fieldIconClasses} aria-hidden="true" />
                           <FormControl>
                             <Input
                               placeholder="Follow-up, Consultation..."
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Point of Contact and Onsite Contact Name */}
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="pointOfContactName"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Name of Point of Contact</FormLabel>
+                          <div className="relative">
+                            <UserRound className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                placeholder="Enter point of contact name"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="onsiteContactName"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Name of onsite contact person</FormLabel>
+                          <div className="relative">
+                            <UserRound className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                placeholder="Enter onsite contact name"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  {/* Doctor's or Provider's Name */}
+                  <FormField
+                    control={form.control}
+                    name="doctorName"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Doctor&apos;s or Provider&apos;s Name (If applicable)</FormLabel>
+                        <div className="relative">
+                          <UserRound className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              placeholder="Enter doctor or provider name"
                               className={inputClasses}
                               {...field}
                             />
@@ -445,10 +537,9 @@ const Page = () => {
                   <FormField
                     control={form.control}
                     name="address"
-                    rules={{ required: "Address/Location is required" }}
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className={labelClasses}>Address / Location *</FormLabel>
+                        <FormLabel className={labelClasses}>Address / Location</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Enter appointment address or location"
@@ -456,6 +547,28 @@ const Page = () => {
                             {...field}
                           />
                         </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Additional Check-in Instructions */}
+                  <FormField
+                    control={form.control}
+                    name="checkInInstructions"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Additional check-in instructions</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Building name, department, floor, suite or room #, etc."
+                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            {...field}
+                          />
+                        </FormControl>
+                        <p className="text-xs text-slate-500">
+                          Be very specific (e.g., building name, department, floor, suite or room #)
+                        </p>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -519,10 +632,9 @@ const Page = () => {
                     <FormField
                       control={form.control}
                       name="appointmentDate"
-                      rules={{ required: "Appointment date is required" }}
                       render={({ field }) => (
                         <FormItem className="space-y-2">
-                          <FormLabel className={labelClasses}>Date of Appointment *</FormLabel>
+                          <FormLabel className={labelClasses}>Date of Appointment</FormLabel>
                           <div className="relative">
                             <Calendar className={fieldIconClasses} aria-hidden="true" />
                             <FormControl>
@@ -541,10 +653,9 @@ const Page = () => {
                     <FormField
                       control={form.control}
                       name="appointmentTime"
-                      rules={{ required: "Appointment time is required" }}
                       render={({ field }) => (
                         <FormItem className="space-y-2">
-                          <FormLabel className={labelClasses}>Time of Appointment *</FormLabel>
+                          <FormLabel className={labelClasses}>Time of Appointment</FormLabel>
                           <div className="relative">
                             <Clock className={fieldIconClasses} aria-hidden="true" />
                             <FormControl>
@@ -573,10 +684,9 @@ const Page = () => {
                     <FormField
                       control={form.control}
                       name="vriLinkOption"
-                      rules={{ required: "VRI link option is required" }}
                       render={({ field }) => (
                         <FormItem className="space-y-3">
-                          <FormLabel className={labelClasses}>VRI Link Option *</FormLabel>
+                          <FormLabel className={labelClasses}>VRI Link Option</FormLabel>
                           <FormControl>
                             <RadioGroup
                               onValueChange={field.onChange}
@@ -668,10 +778,9 @@ const Page = () => {
                     <FormField
                       control={form.control}
                       name="costCenterNumber"
-                      rules={{ required: "Cost center number is required" }}
                       render={({ field }) => (
                         <FormItem className="space-y-2">
-                          <FormLabel className={labelClasses}>Cost Center Number *</FormLabel>
+                          <FormLabel className={labelClasses}>Cost Center Number</FormLabel>
                           <div className="relative">
                             <DollarSign className={fieldIconClasses} aria-hidden="true" />
                             <FormControl>
@@ -709,6 +818,108 @@ const Page = () => {
                       )}
                     />
                   </div>
+                </div>
+
+                {/* Section 6 - Billing Information */}
+                <div className="space-y-6 border-t border-slate-200 pt-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#002060]">💳 Billing Information</h3>
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    <p className="mt-2 text-xs text-slate-500">
+                      Only needed if this is your company&apos;s first time requesting an onsite interpreter with us
+                    </p>
+                  </div>
+
+                  {/* Billing Address */}
+                  <FormField
+                    control={form.control}
+                    name="billingAddress"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Billing Address</FormLabel>
+                        <div className="relative">
+                          <Building2 className="pointer-events-none absolute left-4 top-4 size-4 text-slate-400" aria-hidden="true" />
+                          <FormControl>
+                            <Textarea
+                              placeholder="Enter billing address"
+                              className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 pl-12 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Billing Contact Name and Phone */}
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="billingContactName"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Billing Contact Name</FormLabel>
+                          <div className="relative">
+                            <UserRound className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                placeholder="Enter billing contact name"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="billingContactPhone"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2">
+                          <FormLabel className={labelClasses}>Billing Contact Phone Number</FormLabel>
+                          <div className="relative">
+                            <Phone className={fieldIconClasses} aria-hidden="true" />
+                            <FormControl>
+                              <Input
+                                type="tel"
+                                placeholder="(555) 123-4567"
+                                className={inputClasses}
+                                {...field}
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  {/* Billing Contact Email */}
+                  <FormField
+                    control={form.control}
+                    name="billingContactEmail"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className={labelClasses}>Billing Contact Email</FormLabel>
+                        <div className="relative">
+                          <Mail className={fieldIconClasses} aria-hidden="true" />
+                          <FormControl>
+                            <Input
+                              type="email"
+                              placeholder="billing@company.com"
+                              className={inputClasses}
+                              {...field}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
 
                 {/* CTA Section at Bottom */}
