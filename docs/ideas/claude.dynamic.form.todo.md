@@ -2,6 +2,8 @@
 
 ## Context
 
+**DEMO PURPOSE**: This form is designed for demonstration purposes with minimal validation and maximum ease of use. Prioritize user flow and visual appeal over strict data validation. Users should be able to progress through the form with minimal friction.
+
 ### Relevant Patterns
 - **Design System**: Follow the existing design in `/app/dynamic-webform/page.tsx` (app/dynamic-webform/page.tsx:1-893). Maintain consistent:
   - Color tokens: `#002060` (navy), `#FF9500` (orange accent), `#f0f2f5` (background)
@@ -41,7 +43,7 @@ The new form requires:
 ## User Stories
 
 - As a **healthcare coordinator**, I want to request interpreter services through a guided multi-step form so I can provide all necessary details without being overwhelmed
-- As a **first-time user**, I want to toggle whether I have an account so the form only asks for relevant information
+- As a **user without a client ID**, I want to toggle whether I have an account so the form only asks for relevant information
 - As a **busy scheduler**, I want to paste unstructured scheduling details and have AI parse them so I can save time on manual data entry
 - As a **VRI coordinator**, I want to specify who provides the meeting link so there's no confusion about video call setup
 - As a **billing contact**, I want the form to skip billing fields when I have an account ID so I don't re-enter known information
@@ -54,10 +56,10 @@ The new form requires:
 ### 1.1 Type Definitions & Form Schema
 - [ ] Create `/types/quote-form.ts` with TypeScript interface for all 27+ form fields (matching idea spec lines 7-28)
 - [ ] Create Zod validation schema in `/lib/schemas/quote-form-schema.ts`:
-  - Required field validations (orgName, requestorName, requestorEmail, serviceType, etc.)
-  - Conditional validations (clientId required if hasAccount, vriLink required if vriRLCProvidesLink=false and serviceType=vri)
-  - Email pattern, phone pattern, URL pattern for relevant fields
-  - PHI detection patterns (optional guardrails: flag DOB formats, MRN patterns, SSN patterns in comments field)
+  - **DEMO-FRIENDLY**: Minimal required validations - only truly essential fields (orgName, requestorName, serviceType)
+  - **NO STRICT PATTERNS**: Allow flexible email/phone formats, don't block progression for minor format issues
+  - Optional conditional validations (clientId if hasAccount, but allow empty values for demo flow)
+  - PHI detection as informational warnings only (never block submission)
 
 ### 1.2 API Route for AI Parsing
 - [ ] Create `/app/api/parse-quote/route.ts` as Next.js API route
@@ -105,7 +107,7 @@ The new form requires:
   - **Service Type** section:
     - Radio group with 3 visual cards: Over-the-Phone (otp), Video/VRI (vri), Onsite (onsite)
     - Icons: Phone, Video, MapPin (reference app/dynamic-webform/page.tsx:323-367)
-  - Navigation: Continue button (validates Page 1 fields before advancing)
+  - Navigation: Continue button (always enabled for demo flow - no validation blocking)
   - Secondary actions: Save draft, Cancel, **AI Assisted Submit** button (sets `aiAssistMode = true`)
 
 ### 2.4 Page 2: Appointment, Location & VRI Options
@@ -146,7 +148,12 @@ The new form requires:
     - Edit links per section (navigate back to relevant page)
     - Consent/attestation checkbox (required before submit)
     - **Submit Request** button (primary action)
-  - Navigation: Back button, Submit button (disabled until consent checked and all validations pass)
+  - **Submit Handler**: 
+    - `event.preventDefault()` to prevent default form submission
+    - Show success toast/message: "Quote request submitted successfully!"
+    - Call `clearDraft()` to remove saved form data
+    - **NO API CALLS** - purely for demo completion
+  - Navigation: Back button
 
 ---
 
@@ -191,7 +198,7 @@ The new form requires:
     - **What you'll need next** list (bullets: appointment date/time, languages, point of contact, address/link)
     - **Privacy reminder**: "Please do not include PHI (patient names, DOBs, MRNs, etc.)"
   - **CTAs** (bottom section):
-    - **Submit Request** button (disabled until Review page)
+    - **Submit Request** button (always available for demo flow)
     - **AI Assisted Submit** button (switches to AI Assist mode)
     - **Refresh** button (tertiary style)
 
@@ -208,7 +215,7 @@ The new form requires:
     - **Cost Center** tip: "Enter code so billing routes correctly"
   - **Page 4 content**:
     - If `hasClientId = true`: "Billing on file — we'll use your existing account billing"
-    - If `hasClientId = false`: "First-time Billing — provide billing address, contact, phone, email for secure processing"
+    - If `hasClientId = false`: "Billing Information Required — provide billing address, contact, phone, email since no client ID was provided"
     - **Final check** reminder: "Confirm date/time, timezone, service type, languages, room numbers/link accuracy"
 
 ### 4.3 AI Assist Mode Sidebar Content
@@ -249,24 +256,24 @@ The new form requires:
 
 ## Phase 6: Validation & Behavior
 
-### 6.1 Inline Validation
+### 6.1 Inline Validation (Demo-Friendly)
 - [ ] Configure react-hook-form validation:
-  - Inline errors beneath fields (use `<FormMessage />` from shadcn/ui)
-  - Block progression (disable Next/Continue button) until current page fields are valid
-  - Required field markers (`*` in labels)
-  - Real-time validation on blur or onChange (use `mode: "onChange"` in useForm)
+  - **MINIMAL VALIDATION**: Show gentle suggestions, not strict errors
+  - **NO BLOCKING**: Never disable Next/Continue buttons - allow progression even with missing fields
+  - **OPTIONAL MARKERS**: Use subtle indicators for suggested fields (no aggressive red asterisks)
+  - **GENTLE FEEDBACK**: Use `mode: "onSubmit"` to avoid interrupting user flow with real-time validation
 
-### 6.2 PHI Guardrails
-- [ ] Implement optional client-side PHI detection in `comments` field:
-  - On blur or input change, run `detectPHI()` utility
-  - If patterns detected, show non-blocking warning banner: "Warning: Detected possible PHI patterns. Please remove patient identifiers."
-  - Do not block submission (warning only)
+### 6.2 PHI Guardrails (Informational Only)
+- [ ] Implement gentle PHI detection in `comments` field:
+  - Show friendly informational tip: "Reminder: For demo purposes, avoid including real patient information"
+  - Optional soft detection with non-intrusive suggestions
+  - **NEVER BLOCK**: Always allow submission regardless of content
 
 ### 6.3 Autosave Draft
 - [ ] Implement draft autosave:
   - On form state change, debounce 2 seconds, then call `saveDraft(formData)`
   - On component mount, check for existing draft, prompt user: "We found a saved draft. Would you like to restore it?" (Yes/No buttons)
-  - On successful submit, call `clearDraft()` to remove saved data
+  - On form submit (no API call), show success message and call `clearDraft()` to remove saved data
   - Store draft with timestamp key: `quote-draft-{Date.now()}` — keep only latest
 
 ### 6.4 Accessibility
@@ -346,13 +353,12 @@ app/webform/page.tsx (main container)
 - **Response**: `{ success: boolean, fields: Partial<FormData>, errors?: string[] }`
 - **OpenAI model**: Recommend `gpt-4o-mini` for cost efficiency (or `gpt-4o` for better accuracy)
 
-### Validation Rules (Summary)
-- **Required**: orgName, requestorName, requestorEmail, requestorPhone, serviceType, languages, preference, date, time, address
-- **Conditional required**:
-  - `clientId` if `hasAccount = true`
-  - `vriLink` if `serviceType = vri` AND `vriRLCProvidesLink = false`
-  - Billing fields (billingAddress, billingContactName, billingPhone, billingEmail) if `clientId` is empty
-- **Format validations**: email pattern, phone pattern (flexible), URL pattern for `vriLink`
+### Validation Rules (Demo-Friendly Summary)
+- **Minimal Required**: orgName, requestorName, serviceType (only truly essential fields)
+- **Suggested Fields**: All other fields shown with gentle prompts but never required
+- **No Blocking Validations**: Users can progress and submit at any time
+- **Flexible Formats**: Accept any reasonable email/phone format, no strict pattern matching
+- **Demo Flow Priority**: Prioritize smooth user experience over data completeness
 
 ### Performance Considerations
 - Form state updates should be batched to avoid excessive re-renders
@@ -364,22 +370,26 @@ app/webform/page.tsx (main container)
 
 ## Notes for Implementation
 
-1. **Design Consistency**: Strictly follow the visual patterns in `/app/dynamic-webform/page.tsx` — do not introduce new color schemes, border styles, or typography. The existing form demonstrates the approved design system.
+1. **Demo-First Approach**: This form prioritizes smooth demonstration flow over strict validation. Users should be able to click through all pages and submit successfully with minimal friction. Focus on visual polish and user experience rather than data validation.
 
-2. **Field Mapping**: The idea spec (docs/dynamic.form.idea.md:7-28) lists all 27 fields. Ensure each field has a corresponding form control with proper validation.
+2. **Design Consistency**: Strictly follow the visual patterns in `/app/dynamic-webform/page.tsx` — do not introduce new color schemes, border styles, or typography. The existing form demonstrates the approved design system.
 
-3. **VRI Logic**: The VRI link visibility is nested conditional (serviceType = vri AND vriRLCProvidesLink = false). Test this thoroughly.
+3. **Field Mapping**: The idea spec (docs/dynamic.form.idea.md:7-28) lists all 27 fields. Ensure each field has a corresponding form control but with demo-friendly validation.
 
-4. **Billing Logic**: Billing section should be completely hidden (not just disabled) when `clientId` is present. Use Framer Motion to smoothly transition.
+4. **VRI Logic**: The VRI link visibility is nested conditional (serviceType = vri AND vriRLCProvidesLink = false). Test this thoroughly.
 
-5. **AI Parsing Prompt**: The OpenAI prompt should explicitly instruct the model to avoid extracting PHI. Consider adding examples of what to extract vs. what to skip.
+5. **Billing Logic**: Billing section should be completely hidden (not just disabled) when `clientId` is present. Use Framer Motion to smoothly transition.
 
-6. **Error Handling**: All API calls and form submissions should have user-friendly error messages. Avoid exposing raw error stacks to users.
+   **IMPORTANT**: The `hasAccount` toggle does NOT create accounts. It only determines whether the user provides an existing Client ID. Users either already have a Client ID (existing customer) or they don't (need to provide billing info). No account creation or signup process is involved.
 
-7. **Accessibility**: This form will likely be used by healthcare staff with varying technical skills. Prioritize clear labels, intuitive navigation, and keyboard accessibility.
+6. **AI Parsing Prompt**: The OpenAI prompt should explicitly instruct the model to avoid extracting PHI. Consider adding examples of what to extract vs. what to skip.
 
-8. **Mobile Experience**: While the reference form is desktop-optimized, ensure the new form is usable on tablets (common in healthcare settings). Consider a bottom-positioned sticky navigation bar for small screens.
+7. **Error Handling**: Only AI parsing API calls need error handling (no form submission API). Show user-friendly error messages for AI parsing failures only.
 
-9. **Draft Restoration**: When restoring a draft, preserve the `currentPage` state so users return to where they left off.
+8. **Accessibility**: This form will likely be used by healthcare staff with varying technical skills. Prioritize clear labels, intuitive navigation, and keyboard accessibility.
 
-10. **Submission Flow**: On successful submit, show confirmation message/page and provide a way to submit another request (clear form) or view submitted request details (if backend returns a request ID).
+9. **Mobile Experience**: While the reference form is desktop-optimized, ensure the new form is usable on tablets (common in healthcare settings). Consider a bottom-positioned sticky navigation bar for small screens.
+
+10. **Draft Restoration**: When restoring a draft, preserve the `currentPage` state so users return to where they left off.
+
+11. **Submission Flow**: **NO API CALLS** - On form submit, simply show a success confirmation message/toast and clear the draft. No data should be sent anywhere. This is purely for demo purposes to complete the user experience flow.
