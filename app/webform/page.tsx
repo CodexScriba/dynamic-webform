@@ -122,26 +122,32 @@ const Page = () => {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#f0f2f5] px-4 py-6">
-      <div className="w-full max-w-5xl overflow-hidden rounded-[16px] bg-white shadow-[0_10px_40px_rgba(0,32,96,0.1)]">
-        <div className="relative bg-white p-8 md:p-12">
+    <div className="min-h-screen bg-[#f0f2f5] px-4 py-10">
+      <div className="mx-auto flex max-w-6xl items-center justify-center">
+        <div className="relative w-full max-w-5xl">
           <div
-            className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(255,149,0,0.12)_8px,rgba(255,149,0,0.12)_10px)]"
-            style={{ clipPath: "polygon(100% 0, 100% 100%, 0 0)" }}
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-6 bottom-0 top-4 -z-10 rounded-[40px] bg-gradient-to-b from-[#f0f2f5]/0 via-[#f0f2f5]/70 to-[#f0f2f5]"
           />
 
-          <div className="relative z-10">
-            <h2 className="text-3xl font-bold text-[#002060]">Request a Quote</h2>
-            <div className="mt-3 h-1 w-[60px] rounded bg-[#FF9500]" />
-            <p className="mt-3 text-sm leading-[1.7] text-[#666666]">
-              Connect with our expert team for professional language services
-            </p>
-            <Form {...form}>
-              <form
-                className="mt-8 space-y-8"
-                onSubmit={form.handleSubmit(handleSubmit)}
-                noValidate
-              >
+          <div className="relative overflow-hidden rounded-[28px] bg-white/95 shadow-xl shadow-slate-900/10 backdrop-blur-sm ring-1 ring-white/40 ring-inset md:shadow-[0_40px_80px_-20px_rgba(15,23,42,0.45)]">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#f0f2f5]/80 via-white/50 to-transparent"
+            />
+
+            <div className="relative z-10 p-8 md:p-12">
+              <h2 className="text-3xl font-bold text-[#002060]">Request a Quote</h2>
+              <div className="mt-3 h-1 w-[60px] rounded bg-[#FF9500]" />
+              <p className="mt-3 text-sm leading-[1.7] text-[#666666]">
+                Connect with our expert team for professional language services
+              </p>
+              <Form {...form}>
+                <form
+                  className="mt-8 space-y-8"
+                  onSubmit={form.handleSubmit(handleSubmit)}
+                  noValidate
+                >
                 <div className="grid gap-6 md:grid-cols-2">
                   <FormField
                     control={form.control}
@@ -737,6 +743,7 @@ const Page = () => {
         </div>
       </div>
     </div>
+  </div>
   )
 }
 
