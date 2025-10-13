@@ -189,12 +189,16 @@ const WebformPage = () => {
             style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }}
           />
           <div className='relative z-10 flex h-full flex-col'>
-            {!aiAssistMode && (
-              <StepIndicator currentStep={currentStep} steps={PAGE_DESCRIPTIONS} />
-            )}
+            <div>
+              <h2 className='text-[28px] font-bold text-[#002060]'>Request a Quote</h2>
+              <div className='mt-[15px] h-1 w-[60px] rounded bg-[#FF9500]' />
+              <p className='mt-5 text-sm leading-relaxed text-slate-600'>Connect with our expert team for professional language services. The form guides you step-by-step and saves your progress locally.</p>
+            </div>
+
+            <StepIndicator currentStep={currentStep} steps={PAGE_DESCRIPTIONS} />
 
             <Form {...form}>
-              <form onSubmit={handleSubmitForm} className='flex h-full flex-col'>
+              <form onSubmit={handleSubmitForm} className='flex h-full flex-col' noValidate>
                 <div className='flex-1'>
                   <AnimatePresence mode='wait'>
                     {aiAssistMode ? (
@@ -219,7 +223,7 @@ const WebformPage = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className='space-y-8'
+                        className='space-y-10'
                       >
                         {renderCurrentStep}
                       </motion.div>
@@ -248,7 +252,8 @@ const WebformPage = () => {
                         Continue
                       </Button>
                     </div>
-                    <div className='flex gap-2'>
+                    <div className='flex items-center gap-4'>
+                      <span className='text-sm font-medium text-slate-500'>Step {currentStep} of {PAGE_DESCRIPTIONS.length}</span>
                       <Button
                         type='button'
                         variant='outline'

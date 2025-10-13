@@ -1,15 +1,18 @@
 import { UseFormReturn } from 'react-hook-form'
 import { Building2, Phone, Mail } from 'lucide-react'
 
-import { FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form'
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { SERVICE_TYPE_OPTIONS } from './constants'
 import type { QuoteFormValues } from '@/types/quote-form'
+import { FormSection } from './FormSection'
 
 interface Page4BillingReviewProps {
   form: UseFormReturn<QuoteFormValues>
 }
+
+const plainInputClasses = 'h-11 rounded-2xl border-none bg-slate-50 px-4 text-sm shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0'
 
 export const Page4BillingReview = ({ form }: Page4BillingReviewProps) => {
   const clientId = form.watch('clientId')
@@ -19,13 +22,13 @@ export const Page4BillingReview = ({ form }: Page4BillingReviewProps) => {
   const languages = values.languages.length ? values.languages.join(', ') : 'None listed'
 
   return (
-    <div className='space-y-6'>
+    <div className='space-y-10'>
       {!clientId && (
-        <section className='space-y-4 rounded-2xl bg-[#002060]/5 p-6'>
-          <div>
-            <h3 className='text-lg font-semibold text-[#002060]'>Billing Information</h3>
-            <p className='text-sm text-slate-500'>We only need this when you do not have a Client ID on file.</p>
-          </div>
+        <FormSection
+          title='Billing Information'
+          description='Provide billing contacts when you do not have a Client ID on file.'
+          accent
+        >
           <FormField
             control={form.control}
             name='billingAddress'
@@ -35,9 +38,14 @@ export const Page4BillingReview = ({ form }: Page4BillingReviewProps) => {
                 <FormControl>
                   <div className='relative'>
                     <Building2 className='pointer-events-none absolute left-4 top-3 size-4 text-slate-400' />
-                    <Textarea {...field} className='min-h-[100px] rounded-2xl border-none bg-white pl-12 pr-4 pt-3 text-sm shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0' placeholder='Street, city, state, ZIP' />
+                    <Textarea
+                      {...field}
+                      className='min-h-[100px] rounded-2xl border-none bg-slate-50 pl-12 pr-4 pt-3 text-sm shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0'
+                      placeholder='Street, city, state, ZIP'
+                    />
                   </div>
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -49,8 +57,9 @@ export const Page4BillingReview = ({ form }: Page4BillingReviewProps) => {
                 <FormItem className='space-y-2'>
                   <FormLabel className='text-sm font-semibold text-[#002060]'>Billing Contact Name</FormLabel>
                   <FormControl>
-                    <Input {...field} className='h-11 rounded-2xl border-none bg-white px-4 text-sm shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0' placeholder='Name handling invoices' />
+                    <Input {...field} className={plainInputClasses} placeholder='Name handling invoices' />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -63,9 +72,10 @@ export const Page4BillingReview = ({ form }: Page4BillingReviewProps) => {
                   <FormControl>
                     <div className='relative'>
                       <Phone className='pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400' />
-                      <Input {...field} className='h-11 rounded-2xl border-none bg-white pl-12 pr-4 text-sm shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0' placeholder='(555) 000-5678' />
+                      <Input {...field} className={plainInputClasses} placeholder='(555) 000-5678' />
                     </div>
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -79,20 +89,17 @@ export const Page4BillingReview = ({ form }: Page4BillingReviewProps) => {
                 <FormControl>
                   <div className='relative'>
                     <Mail className='pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400' />
-                    <Input {...field} className='h-11 rounded-2xl border-none bg-white pl-12 pr-4 text-sm shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0' placeholder='billing@organization.com' />
+                    <Input {...field} className={plainInputClasses} placeholder='billing@organization.com' />
                   </div>
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
-        </section>
+        </FormSection>
       )}
 
-      <section className='space-y-4'>
-        <div>
-          <h3 className='text-lg font-semibold text-[#002060]'>Review Details</h3>
-          <p className='text-sm text-slate-500'>Double-check date, time, languages, and contact information.</p>
-        </div>
+      <FormSection title='Review Details' description='Double-check date, time, languages, and contact information before submitting.'>
         <div className='grid gap-4 rounded-2xl bg-slate-50 p-6 shadow-inner md:grid-cols-2'>
           <ReviewRow label='Organization' value={values.orgName || 'Not provided'} />
           <ReviewRow label='Requestor' value={values.requestorName || 'Not provided'} />
@@ -106,7 +113,7 @@ export const Page4BillingReview = ({ form }: Page4BillingReviewProps) => {
         <div className='rounded-2xl border border-[#FF9500]/40 bg-white p-4 text-sm text-slate-600 shadow-sm'>
           Submission is for demo only. We will display a confirmation toast and clear your draft when you click Submit Request.
         </div>
-      </section>
+      </FormSection>
     </div>
   )
 }
