@@ -85,9 +85,6 @@ function Page1SidebarContent () {
           Why Choose Us?
         </h3>
       </div>
-      <p className="mt-6 text-[17px] leading-relaxed text-white/95">
-        Trusted by leading healthcare organizations, insurance companies, and Fortune 500 enterprises nationwide.
-      </p>
       <div className="mt-8 space-y-6">
         {FEATURES.map(({ icon: Icon, title, description }) => (
           <div
@@ -105,22 +102,12 @@ function Page1SidebarContent () {
         ))}
       </div>
 
-      <div className="mt-8 rounded-lg bg-white/10 p-4 border border-white/20">
-        <p className="text-sm font-semibold text-white mb-2">Getting Started</p>
-        <p className="text-xs text-white/85 leading-relaxed">
-          Fill in your organization and requestor information. If you&apos;re an existing customer, enter your Client ID to expedite the process.
-        </p>
-      </div>
-
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="mt-6 flex flex-wrap gap-3">
         <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
           ISO Certified
         </div>
         <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
           200+ Languages
-        </div>
-        <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
-          24/7 Support
         </div>
         <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
           HIPAA Compliant

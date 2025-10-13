@@ -858,9 +858,6 @@ const Page = () => {
               <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-3 py-1.5 text-[11px] font-semibold">
                 On-Site Specialists
               </div>
-              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-3 py-1.5 text-[11px] font-semibold">
-                24/7 Availability
-              </div>
             </div>
             <div className="mt-8 h-px bg-white/20" />
             <div className="mt-6 flex flex-col gap-3">
