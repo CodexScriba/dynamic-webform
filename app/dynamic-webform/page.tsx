@@ -59,7 +59,7 @@ const DURATION_OPTIONS = [
 
 const labelClasses = "text-sm font-medium text-slate-600"
 const inputClasses =
-  "h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+  "h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
 const fieldIconClasses =
   "pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400"
 type RequestQuoteFormValues = {
@@ -150,13 +150,13 @@ const Page = () => {
       <div className="grid w-full max-w-[1400px] min-h-[650px] grid-cols-1 overflow-hidden rounded-[16px] bg-white shadow-[0_10px_40px_rgba(0,32,96,0.1)] md:grid-cols-[65%_35%]">
         <div className="relative bg-white p-[50px] md:min-h-[650px]">
           <div
-            className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(255,149,0,0.12)_8px,rgba(255,149,0,0.12)_10px)]"
+            className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(230,120,0,0.12)_8px,rgba(230,120,0,0.12)_10px)]"
             style={{ clipPath: "polygon(100% 0, 100% 100%, 0 0)" }}
           />
 
           <div className="relative z-10">
             <h2 className="text-[28px] font-bold text-[#002060]">Request a Quote</h2>
-            <div className="mt-[15px] h-1 w-[60px] rounded bg-[#FF9500]" />
+            <div className="mt-[15px] h-1 w-[60px] rounded bg-[#E67800]" />
             <p className="mt-5 text-[14px] leading-[1.7] text-[#666666]">
               Connect with our expert team for professional language services
             </p>
@@ -170,7 +170,7 @@ const Page = () => {
                       <div
                         className={`flex size-10 items-center justify-center rounded-full border-2 transition-all duration-300 ${
                           currentStep >= step.id
-                            ? "border-[#FF9500] bg-[#FF9500] text-white"
+                            ? "border-[#E67800] bg-[#E67800] text-white"
                             : "border-slate-300 bg-white text-slate-400"
                         }`}
                       >
@@ -179,7 +179,7 @@ const Page = () => {
                       <div className="mt-2 text-center">
                         <div
                           className={`text-xs font-semibold ${
-                            currentStep >= step.id ? "text-[#FF9500]" : "text-slate-400"
+                            currentStep >= step.id ? "text-[#E67800]" : "text-slate-400"
                           }`}
                         >
                           {step.title}
@@ -190,7 +190,7 @@ const Page = () => {
                     {index < STEPS.length - 1 && (
                       <div
                         className={`h-0.5 flex-1 transition-all duration-300 ${
-                          currentStep > step.id ? "bg-[#FF9500]" : "bg-slate-300"
+                          currentStep > step.id ? "bg-[#E67800]" : "bg-slate-300"
                         }`}
                         style={{ marginTop: "-45px" }}
                       />
@@ -316,7 +316,7 @@ const Page = () => {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">Service Details</h3>
-                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                   </div>
 
                   {/* Service Type */}
@@ -342,16 +342,16 @@ const Page = () => {
                                   }}
                                   className={`flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 transition-all duration-200 ${
                                     isSelected
-                                      ? "border-[#FF9500] bg-[#FF9500]/10 shadow-md"
-                                      : "border-slate-200 bg-white hover:border-[#FF9500]/50 hover:bg-slate-50"
+                                      ? "border-[#E67800] bg-[#E67800]/10 shadow-md"
+                                      : "border-slate-200 bg-white hover:border-[#E67800]/50 hover:bg-slate-50"
                                   }`}
                                 >
                                   <Icon
-                                    className={`size-6 ${isSelected ? "text-[#FF9500]" : "text-slate-600"}`}
+                                    className={`size-6 ${isSelected ? "text-[#E67800]" : "text-slate-600"}`}
                                   />
                                   <span
                                     className={`text-sm font-medium ${
-                                      isSelected ? "text-[#FF9500]" : "text-slate-700"
+                                      isSelected ? "text-[#E67800]" : "text-slate-700"
                                     }`}
                                   >
                                     {service.label}
@@ -400,7 +400,7 @@ const Page = () => {
                           </FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                                 <SelectValue placeholder="Select preference" />
                               </SelectTrigger>
                             </FormControl>
@@ -433,7 +433,7 @@ const Page = () => {
                                     form.setValue("interpreterName", "")
                                   }
                                 }}
-                                className="data-[state=checked]:bg-[#FF9500]"
+                                className="data-[state=checked]:bg-[#E67800]"
                               />
                             </FormControl>
                             <span className="ml-3 text-sm font-medium text-slate-700">
@@ -503,7 +503,7 @@ const Page = () => {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">📅 Appointment Info</h3>
-                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                   </div>
 
                   {/* Address/Location */}
@@ -517,7 +517,7 @@ const Page = () => {
                         <FormControl>
                           <Textarea
                             placeholder="Enter appointment address or location"
-                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                             {...field}
                           />
                         </FormControl>
@@ -536,7 +536,7 @@ const Page = () => {
                           <FormLabel className={labelClasses}>Time Zone</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                                 <SelectValue placeholder="Select timezone" />
                               </SelectTrigger>
                             </FormControl>
@@ -561,7 +561,7 @@ const Page = () => {
                           <FormLabel className={labelClasses}>Estimated Duration</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                                 <SelectValue placeholder="Select duration" />
                               </SelectTrigger>
                             </FormControl>
@@ -636,7 +636,7 @@ const Page = () => {
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-semibold text-[#002060]">🖥 VRI Options</h3>
-                      <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                      <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                     </div>
 
                     <FormField
@@ -652,7 +652,7 @@ const Page = () => {
                               defaultValue={field.value}
                               className="space-y-3"
                             >
-                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#FF9500]/50">
+                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#E67800]/50">
                                 <RadioGroupItem value="own" id="own" />
                                 <label
                                   htmlFor="own"
@@ -661,7 +661,7 @@ const Page = () => {
                                   I will use my own link
                                 </label>
                               </div>
-                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#FF9500]/50">
+                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#E67800]/50">
                                 <RadioGroupItem value="lls" id="lls" />
                                 <label
                                   htmlFor="lls"
@@ -707,7 +707,7 @@ const Page = () => {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">💬 Additional Sections and Comments</h3>
-                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                   </div>
 
                   {/* Additional Comments */}
@@ -720,7 +720,7 @@ const Page = () => {
                         <FormControl>
                           <Textarea
                             placeholder="Enter any additional comments..."
-                            className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                             {...field}
                           />
                         </FormControl>
@@ -804,14 +804,14 @@ const Page = () => {
                     <Button
                       type="button"
                       onClick={handleNext}
-                      className="rounded-lg bg-[#FF9500] px-6 py-2 font-semibold text-white hover:bg-[#FF8500]"
+                      className="rounded-lg bg-[#E67800] px-6 py-2 font-semibold text-white hover:bg-[#CC6900]"
                     >
                       Next
                     </Button>
                   ) : (
                     <Button
                       type="submit"
-                      className="rounded-lg bg-[#FF9500] px-6 py-2 font-semibold text-white hover:bg-[#FF8500]"
+                      className="rounded-lg bg-[#E67800] px-6 py-2 font-semibold text-white hover:bg-[#CC6900]"
                     >
                       Complete
                     </Button>
@@ -828,7 +828,7 @@ const Page = () => {
           <div className="relative z-10 flex h-full flex-col">
             <div className="inline-block">
               <h3 className="relative text-[32px] font-bold pl-[24px]">
-                <span className="absolute left-0 top-0 h-full w-[5px] rounded bg-[#FF9500]" />
+                <span className="absolute left-0 top-0 h-full w-[5px] rounded bg-[#E67800]" />
                 Why us?
               </h3>
             </div>
@@ -839,9 +839,9 @@ const Page = () => {
               {FEATURES.map(({ icon: Icon, title, description }) => (
                 <div
                   key={title}
-                  className="flex items-start gap-4 rounded-lg border-l-[3px] border-[#FF9500] bg-white/10 p-4 transition-all duration-300 hover:translate-x-1 hover:bg-white/20"
+                  className="flex items-start gap-4 rounded-lg border-l-[3px] border-[#E67800] bg-white/10 p-4 transition-all duration-300 hover:translate-x-1 hover:bg-white/20"
                 >
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#FF9500] to-[#FFA500] text-[18px] font-bold text-white">
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#E67800] to-[#FFA500] text-[18px] font-bold text-white">
                     <Icon className="size-5" strokeWidth={2.5} />
                   </div>
                   <div className="space-y-1">
@@ -851,11 +851,11 @@ const Page = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex flex-wrap gap-3 pb-4 text-[#FFB347]">
-              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-3 py-1.5 text-[11px] font-semibold">
+            <div className="mt-8 mb-6 flex flex-wrap gap-3 text-[#FFB347]">
+              <div className="rounded-full border border-[#E67800]/40 bg-[#E67800]/20 px-3 py-1.5 text-[11px] font-semibold">
                 ISO Certified
               </div>
-              <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-3 py-1.5 text-[11px] font-semibold">
+              <div className="rounded-full border border-[#E67800]/40 bg-[#E67800]/20 px-3 py-1.5 text-[11px] font-semibold">
                 On-Site Specialists
               </div>
             </div>
@@ -863,7 +863,7 @@ const Page = () => {
             <div className="mt-6 flex flex-col gap-3">
               <Button
                 variant="ghost"
-                className="w-full rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-8 py-5 text-[16px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] hover:text-white focus-visible:ring-[#FF9500]/40"
+                className="w-full rounded-lg border-0 bg-gradient-to-br from-[#E67800] to-[#FFA500] px-8 py-5 text-[16px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(230,120,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#CC6900] hover:to-[#E67800] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(230,120,0,0.4)] hover:text-white focus-visible:ring-[#E67800]/40"
               >
                 Submit Request
               </Button>

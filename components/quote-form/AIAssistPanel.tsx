@@ -44,10 +44,10 @@ export function AIAssistPanel ({ onParse, onCancel }: AIAssistPanelProps) {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-[#FF9500]" />
+            <Sparkles className="h-6 w-6 text-[#E67800]" />
             <h2 className="text-2xl font-bold text-[#002060]">AI Assisted Form Fill</h2>
           </div>
-          <div className="mt-2 h-1 w-[60px] rounded bg-[#FF9500]" />
+          <div className="mt-2 h-1 w-[60px] rounded bg-[#E67800]" />
         </div>
         <Button
           variant="ghost"
@@ -98,7 +98,7 @@ Duration: 1 hour
 Zoom link: https://zoom.us/j/123456789
 Contact: Dr. Sarah Johnson (555-0123)
 Building A, Room 302"
-          className="min-h-[300px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0 font-mono text-sm"
+          className="min-h-[300px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0 font-mono text-sm"
           disabled={isLoading}
         />
         <p className="text-xs text-slate-500">
@@ -119,7 +119,7 @@ Building A, Room 302"
         <Button
           onClick={handleParse}
           disabled={isLoading || !aiInput.trim()}
-          className="rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-6 py-2.5 text-sm font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="rounded-lg border-0 bg-gradient-to-br from-[#E67800] to-[#FFA500] px-6 py-2.5 text-sm font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(230,120,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#CC6900] hover:to-[#E67800] hover:shadow-[0_6px_20px_rgba(230,120,0,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? (
             <span className="flex items-center gap-2">

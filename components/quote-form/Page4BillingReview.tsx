@@ -10,7 +10,7 @@ import { QuoteFormSchema } from '@/lib/schemas/quote-form-schema'
 
 const labelClasses = 'text-sm font-medium text-slate-600'
 const inputClasses =
-  'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0'
+  'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0'
 const fieldIconClasses =
   'pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400'
 
@@ -42,7 +42,7 @@ export function Page4BillingReview ({ form }: Page4BillingReviewProps) {
             {/* Billing Information */}
             <div>
               <h3 className="text-lg font-semibold text-[#002060]">💳 Billing Information</h3>
-              <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+              <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
               <p className="mt-2 text-xs text-slate-500">
                 Only needed if this is your company&apos;s first time requesting an interpreter with us
               </p>
@@ -59,7 +59,7 @@ export function Page4BillingReview ({ form }: Page4BillingReviewProps) {
                     <FormControl>
                       <Textarea
                         placeholder="Enter billing address"
-                        className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 pl-12 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                        className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 pl-12 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                         {...field}
                       />
                     </FormControl>
@@ -142,7 +142,7 @@ export function Page4BillingReview ({ form }: Page4BillingReviewProps) {
       {/* Review Section */}
       <div className={showBilling ? 'pt-6' : ''}>
         <h3 className="text-lg font-semibold text-[#002060]">✅ Review & Submit</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
         <p className="mt-2 text-sm text-slate-600">
           Please review your information before submitting. You can go back to edit any section.
         </p>
@@ -179,7 +179,7 @@ export function Page4BillingReview ({ form }: Page4BillingReviewProps) {
         </div>
       </div>
 
-      <div className="rounded-lg border-2 border-[#FF9500]/30 bg-[#FF9500]/5 p-4">
+      <div className="rounded-lg border-2 border-[#E67800]/30 bg-[#E67800]/5 p-4">
         <p className="text-sm text-[#002060]">
           <strong>Final check reminder:</strong> Confirm date/time, timezone, service type, languages, and location details are accurate.
         </p>

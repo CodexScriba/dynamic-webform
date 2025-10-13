@@ -58,7 +58,7 @@ const DURATION_OPTIONS = [
 
 const labelClasses = "text-sm font-medium text-slate-600"
 const inputClasses =
-  "h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+  "h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
 const fieldIconClasses =
   "pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400"
 type RequestQuoteFormValues = {
@@ -156,7 +156,7 @@ const Page = () => {
 
             <div className="relative z-10 p-8 md:p-12">
               <h2 className="text-3xl font-bold text-[#002060]">Request a Quote</h2>
-              <div className="mt-3 h-1 w-[60px] rounded bg-[#FF9500]" />
+              <div className="mt-3 h-1 w-[60px] rounded bg-[#E67800]" />
               <p className="mt-3 text-sm leading-[1.7] text-[#666666]">
                 Connect with our expert team for professional language services
               </p>
@@ -283,7 +283,7 @@ const Page = () => {
                 <div className="space-y-6 border-t border-slate-200 pt-8">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">Service Details</h3>
-                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                   </div>
 
                   {/* Service Type */}
@@ -307,16 +307,16 @@ const Page = () => {
                                   }}
                                   className={`flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 transition-all duration-200 ${
                                     isSelected
-                                      ? "border-[#FF9500] bg-[#FF9500]/10 shadow-md"
-                                      : "border-slate-200 bg-white hover:border-[#FF9500]/50 hover:bg-slate-50"
+                                      ? "border-[#E67800] bg-[#E67800]/10 shadow-md"
+                                      : "border-slate-200 bg-white hover:border-[#E67800]/50 hover:bg-slate-50"
                                   }`}
                                 >
                                   <Icon
-                                    className={`size-6 ${isSelected ? "text-[#FF9500]" : "text-slate-600"}`}
+                                    className={`size-6 ${isSelected ? "text-[#E67800]" : "text-slate-600"}`}
                                   />
                                   <span
                                     className={`text-sm font-medium ${
-                                      isSelected ? "text-[#FF9500]" : "text-slate-700"
+                                      isSelected ? "text-[#E67800]" : "text-slate-700"
                                     }`}
                                   >
                                     {service.label}
@@ -364,7 +364,7 @@ const Page = () => {
                           </FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                                 <SelectValue placeholder="Select preference" />
                               </SelectTrigger>
                             </FormControl>
@@ -397,7 +397,7 @@ const Page = () => {
                                     form.setValue("interpreterName", "")
                                   }
                                 }}
-                                className="data-[state=checked]:bg-[#FF9500]"
+                                className="data-[state=checked]:bg-[#E67800]"
                               />
                             </FormControl>
                             <span className="ml-3 text-sm font-medium text-slate-700">
@@ -530,7 +530,7 @@ const Page = () => {
                 <div className="space-y-6 border-t border-slate-200 pt-8">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">📅 Appointment Info</h3>
-                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                   </div>
 
                   {/* Address/Location */}
@@ -543,7 +543,7 @@ const Page = () => {
                         <FormControl>
                           <Textarea
                             placeholder="Enter appointment address or location"
-                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                             {...field}
                           />
                         </FormControl>
@@ -562,7 +562,7 @@ const Page = () => {
                         <FormControl>
                           <Textarea
                             placeholder="Building name, department, floor, suite or room #, etc."
-                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                             {...field}
                           />
                         </FormControl>
@@ -584,7 +584,7 @@ const Page = () => {
                           <FormLabel className={labelClasses}>Time Zone</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                                 <SelectValue placeholder="Select timezone" />
                               </SelectTrigger>
                             </FormControl>
@@ -609,7 +609,7 @@ const Page = () => {
                           <FormLabel className={labelClasses}>Estimated Duration</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                              <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                                 <SelectValue placeholder="Select duration" />
                               </SelectTrigger>
                             </FormControl>
@@ -678,7 +678,7 @@ const Page = () => {
                   <div className="space-y-6 border-t border-slate-200 pt-8">
                     <div>
                       <h3 className="text-lg font-semibold text-[#002060]">🖥 VRI Options</h3>
-                      <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                      <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                     </div>
 
                     <FormField
@@ -693,7 +693,7 @@ const Page = () => {
                               defaultValue={field.value}
                               className="space-y-3"
                             >
-                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#FF9500]/50">
+                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#E67800]/50">
                                 <RadioGroupItem value="own" id="own" />
                                 <label
                                   htmlFor="own"
@@ -702,7 +702,7 @@ const Page = () => {
                                   I will use my own link
                                 </label>
                               </div>
-                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#FF9500]/50">
+                              <div className="flex items-center space-x-3 rounded-lg border-2 border-slate-200 p-4 transition-colors hover:border-[#E67800]/50">
                                 <RadioGroupItem value="lls" id="lls" />
                                 <label
                                   htmlFor="lls"
@@ -748,7 +748,7 @@ const Page = () => {
                 <div className="space-y-6 border-t border-slate-200 pt-8">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">💬 Additional Sections and Comments</h3>
-                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                   </div>
 
                   {/* Additional Comments */}
@@ -761,7 +761,7 @@ const Page = () => {
                         <FormControl>
                           <Textarea
                             placeholder="Enter any additional comments..."
-                            className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                            className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                             {...field}
                           />
                         </FormControl>
@@ -824,7 +824,7 @@ const Page = () => {
                 <div className="space-y-6 border-t border-slate-200 pt-8">
                   <div>
                     <h3 className="text-lg font-semibold text-[#002060]">💳 Billing Information</h3>
-                    <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+                    <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
                     <p className="mt-2 text-xs text-slate-500">
                       Only needed if this is your company&apos;s first time requesting an onsite interpreter with us
                     </p>
@@ -842,7 +842,7 @@ const Page = () => {
                           <FormControl>
                             <Textarea
                               placeholder="Enter billing address"
-                              className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 pl-12 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                              className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 pl-12 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                               {...field}
                             />
                           </FormControl>
@@ -934,14 +934,14 @@ const Page = () => {
                     </Button>
                     <Button
                       variant="ghost"
-                      className="rounded-lg border-2 border-[#FF9500] bg-white px-6 py-2.5 text-sm font-bold uppercase tracking-[0.5px] text-[#FF9500] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#FF9500]/10"
+                      className="rounded-lg border-2 border-[#E67800] bg-white px-6 py-2.5 text-sm font-bold uppercase tracking-[0.5px] text-[#E67800] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#E67800]/10"
                       type="button"
                     >
                       AI Assisted Submit
                     </Button>
                     <Button
                       variant="ghost"
-                      className="rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-6 py-2.5 text-sm font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] hover:text-white focus-visible:ring-[#FF9500]/40"
+                      className="rounded-lg border-0 bg-gradient-to-br from-[#E67800] to-[#FFA500] px-6 py-2.5 text-sm font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(230,120,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#CC6900] hover:to-[#E67800] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(230,120,0,0.4)] hover:text-white focus-visible:ring-[#E67800]/40"
                       type="submit"
                     >
                       Submit Request

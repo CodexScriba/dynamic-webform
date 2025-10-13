@@ -37,15 +37,15 @@ export function Page5Review ({ form }: Page5ReviewProps) {
       {/* Header */}
       <div>
         <h3 className="text-lg font-semibold text-[#002060]">Review & Submit</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
         <p className="mt-3 text-sm text-slate-600">
           Please review your information carefully before submitting. You can go back to edit any section.
         </p>
       </div>
 
       {/* Important Reminder */}
-      <div className="rounded-lg border-2 border-[#FF9500]/30 bg-[#FF9500]/5 p-4 flex gap-3">
-        <AlertCircle className="h-5 w-5 text-[#FF9500] flex-shrink-0 mt-0.5" />
+      <div className="rounded-lg border-2 border-[#E67800]/30 bg-[#E67800]/5 p-4 flex gap-3">
+        <AlertCircle className="h-5 w-5 text-[#E67800] flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-semibold text-[#002060]">Final check reminder:</p>
           <p className="text-xs text-slate-700 mt-1">
@@ -57,7 +57,7 @@ export function Page5Review ({ form }: Page5ReviewProps) {
       {/* Organization Information */}
       <div className="rounded-xl bg-slate-50 p-5 space-y-4 border border-slate-200">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-300">
-          <Building2 className="h-4 w-4 text-[#FF9500]" />
+          <Building2 className="h-4 w-4 text-[#E67800]" />
           <h4 className="text-sm font-bold text-[#002060] uppercase tracking-wide">Organization</h4>
         </div>
         <div className="grid gap-3 md:grid-cols-2">
@@ -77,7 +77,7 @@ export function Page5Review ({ form }: Page5ReviewProps) {
       {/* Requestor Information */}
       <div className="rounded-xl bg-slate-50 p-5 space-y-4 border border-slate-200">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-300">
-          <User className="h-4 w-4 text-[#FF9500]" />
+          <User className="h-4 w-4 text-[#E67800]" />
           <h4 className="text-sm font-bold text-[#002060] uppercase tracking-wide">Requestor</h4>
         </div>
         <div className="grid gap-3 md:grid-cols-3">
@@ -99,7 +99,7 @@ export function Page5Review ({ form }: Page5ReviewProps) {
       {/* Service & Appointment */}
       <div className="rounded-xl bg-slate-50 p-5 space-y-4 border border-slate-200">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-300">
-          <Calendar className="h-4 w-4 text-[#FF9500]" />
+          <Calendar className="h-4 w-4 text-[#E67800]" />
           <h4 className="text-sm font-bold text-[#002060] uppercase tracking-wide">Service & Appointment</h4>
         </div>
         <div className="grid gap-3 md:grid-cols-2">
@@ -143,7 +143,7 @@ export function Page5Review ({ form }: Page5ReviewProps) {
       {/* Location & Contacts */}
       <div className="rounded-xl bg-slate-50 p-5 space-y-4 border border-slate-200">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-300">
-          <MapPin className="h-4 w-4 text-[#FF9500]" />
+          <MapPin className="h-4 w-4 text-[#E67800]" />
           <h4 className="text-sm font-bold text-[#002060] uppercase tracking-wide">Location & Contacts</h4>
         </div>
         <div className="space-y-3">
@@ -179,7 +179,7 @@ export function Page5Review ({ form }: Page5ReviewProps) {
       {/* Billing & Additional */}
       <div className="rounded-xl bg-slate-50 p-5 space-y-4 border border-slate-200">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-300">
-          <Phone className="h-4 w-4 text-[#FF9500]" />
+          <Phone className="h-4 w-4 text-[#E67800]" />
           <h4 className="text-sm font-bold text-[#002060] uppercase tracking-wide">Billing & Additional</h4>
         </div>
         {!hasClientId && formValues.billingAddress ? (

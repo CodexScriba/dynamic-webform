@@ -159,7 +159,7 @@ export default function WebformPage () {
               </Button>
               <Button
                 onClick={handleRestoreDraft}
-                className="flex-1 bg-[#FF9500] hover:bg-[#FF8500]"
+                className="flex-1 bg-[#E67800] hover:bg-[#CC6900]"
               >
                 Restore Draft
               </Button>
@@ -173,13 +173,13 @@ export default function WebformPage () {
         {/* Left Panel - Form */}
         <div className="relative bg-white p-[50px] md:min-h-[650px]">
           <div
-            className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(255,149,0,0.12)_8px,rgba(255,149,0,0.12)_10px)]"
+            className="pointer-events-none absolute right-0 top-0 h-[200px] w-[250px] bg-[repeating-linear-gradient(-45deg,transparent,transparent_8px,rgba(230,120,0,0.12)_8px,rgba(230,120,0,0.12)_10px)]"
             style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }}
           />
 
           <div className="relative z-10">
             <h2 className="text-[28px] font-bold text-[#002060]">Request a Quote</h2>
-            <div className="mt-[15px] h-1 w-[60px] rounded bg-[#FF9500]" />
+            <div className="mt-[15px] h-1 w-[60px] rounded bg-[#E67800]" />
 
             {!aiAssistMode && (
               <div className="mt-8 mb-8">
@@ -235,14 +235,14 @@ export default function WebformPage () {
                       <Button
                         type="button"
                         onClick={handleNext}
-                        className="rounded-lg bg-[#FF9500] px-6 py-2 font-semibold text-white hover:bg-[#FF8500]"
+                        className="rounded-lg bg-[#E67800] px-6 py-2 font-semibold text-white hover:bg-[#CC6900]"
                       >
                         Next
                       </Button>
                     ) : (
                       <Button
                         type="submit"
-                        className="rounded-lg bg-[#FF9500] px-6 py-2 font-semibold text-white hover:bg-[#FF8500]"
+                        className="rounded-lg bg-[#E67800] px-6 py-2 font-semibold text-white hover:bg-[#CC6900]"
                       >
                         Complete
                       </Button>

@@ -11,7 +11,7 @@ import { QuoteFormSchema } from '@/lib/schemas/quote-form-schema'
 
 const labelClasses = 'text-sm font-medium text-slate-600'
 const inputClasses =
-  'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0'
+  'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0'
 const fieldIconClasses =
   'pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400'
 
@@ -62,7 +62,7 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
       {/* Service Type */}
       <div>
         <h3 className="text-lg font-semibold text-[#002060]">Service Type</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <FormField
@@ -83,16 +83,16 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
                       onClick={() => field.onChange(service.id)}
                       className={`flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 transition-all duration-200 ${
                         isSelected
-                          ? 'border-[#FF9500] bg-[#FF9500]/10 shadow-md'
-                          : 'border-slate-200 bg-white hover:border-[#FF9500]/50 hover:bg-slate-50'
+                          ? 'border-[#E67800] bg-[#E67800]/10 shadow-md'
+                          : 'border-slate-200 bg-white hover:border-[#E67800]/50 hover:bg-slate-50'
                       }`}
                     >
                       <Icon
-                        className={`size-6 ${isSelected ? 'text-[#FF9500]' : 'text-slate-600'}`}
+                        className={`size-6 ${isSelected ? 'text-[#E67800]' : 'text-slate-600'}`}
                       />
                       <span
                         className={`text-sm font-medium ${
-                          isSelected ? 'text-[#FF9500]' : 'text-slate-700'
+                          isSelected ? 'text-[#E67800]' : 'text-slate-700'
                         }`}
                       >
                         {service.label}
@@ -110,7 +110,7 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
       {/* Languages & Preferences */}
       <div className="pt-6">
         <h3 className="text-lg font-semibold text-[#002060]">Languages & Preferences</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -143,7 +143,7 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
               <FormLabel className={labelClasses}>Interpreter Gender Preference</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                     <SelectValue placeholder="Select preference" />
                   </SelectTrigger>
                 </FormControl>
@@ -162,7 +162,7 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
       {/* Appointment Details */}
       <div className="pt-6">
         <h3 className="text-lg font-semibold text-[#002060]">Appointment Details</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -218,7 +218,7 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
               <FormLabel className={labelClasses}>Time Zone</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                     <SelectValue placeholder="Select timezone" />
                   </SelectTrigger>
                 </FormControl>
@@ -243,7 +243,7 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
               <FormLabel className={labelClasses}>Estimated Duration</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                     <SelectValue placeholder="Select duration" />
                   </SelectTrigger>
                 </FormControl>
@@ -266,7 +266,7 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
         <div className="space-y-6 border-t border-slate-200 pt-6">
           <div>
             <h3 className="text-lg font-semibold text-[#002060]">VRI Options</h3>
-            <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+            <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
           </div>
 
           <FormField
@@ -282,7 +282,7 @@ export function Page2ServiceAppointment ({ form }: Page2ServiceAppointmentProps)
                     <Switch
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="data-[state=checked]:bg-[#FF9500]"
+                      className="data-[state=checked]:bg-[#E67800]"
                     />
                   </FormControl>
                   <span className="ml-3 text-sm font-medium text-slate-700">

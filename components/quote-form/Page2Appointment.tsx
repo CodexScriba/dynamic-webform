@@ -12,7 +12,7 @@ import { QuoteFormSchema } from '@/lib/schemas/quote-form-schema'
 
 const labelClasses = 'text-sm font-medium text-slate-600'
 const inputClasses =
-  'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0'
+  'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0'
 const fieldIconClasses =
   'pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400'
 
@@ -57,7 +57,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
       {/* Appointment Details */}
       <div>
         <h3 className="text-lg font-semibold text-[#002060]">📅 Appointment Details</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -69,7 +69,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
               <FormLabel className={labelClasses}>Time Zone</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                     <SelectValue placeholder="Select timezone" />
                   </SelectTrigger>
                 </FormControl>
@@ -94,7 +94,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
               <FormLabel className={labelClasses}>Estimated Duration</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                     <SelectValue placeholder="Select duration" />
                   </SelectTrigger>
                 </FormControl>
@@ -159,7 +159,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
       {/* Location */}
       <div className="pt-6">
         <h3 className="text-lg font-semibold text-[#002060]">📍 Location</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <FormField
@@ -171,7 +171,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
             <FormControl>
               <Textarea
                 placeholder="Enter appointment address or location"
-                className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                 {...field}
               />
             </FormControl>
@@ -189,7 +189,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
             <FormControl>
               <Textarea
                 placeholder="Building name, department, floor, suite or room #, etc."
-                className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                 {...field}
               />
             </FormControl>
@@ -204,7 +204,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
       {/* Languages & Preferences */}
       <div className="pt-6">
         <h3 className="text-lg font-semibold text-[#002060]">🌐 Languages & Preferences</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -237,7 +237,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
               <FormLabel className={labelClasses}>Interpreter Gender Preference</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#FF9500]/40 focus:ring-offset-0">
+                  <SelectTrigger className="h-11 rounded-2xl border-none bg-slate-50 shadow-inner focus:ring-2 focus:ring-[#E67800]/40 focus:ring-offset-0">
                     <SelectValue placeholder="Select preference" />
                   </SelectTrigger>
                 </FormControl>
@@ -258,7 +258,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
         <div className="space-y-6 border-t border-slate-200 pt-8">
           <div>
             <h3 className="text-lg font-semibold text-[#002060]">🖥 VRI Options</h3>
-            <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+            <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
           </div>
 
           <FormField
@@ -274,7 +274,7 @@ export function Page2Appointment ({ form }: Page2AppointmentProps) {
                     <Switch
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="data-[state=checked]:bg-[#FF9500]"
+                      className="data-[state=checked]:bg-[#E67800]"
                     />
                   </FormControl>
                   <span className="ml-3 text-sm font-medium text-slate-700">

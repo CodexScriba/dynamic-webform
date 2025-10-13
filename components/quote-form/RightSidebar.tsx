@@ -46,7 +46,7 @@ export function RightSidebar ({
             <Button
               onClick={onSubmit}
               variant="ghost"
-              className="w-full rounded-lg border-0 bg-gradient-to-br from-[#FF9500] to-[#FFA500] px-8 py-5 text-[16px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(255,149,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#FF8500] hover:to-[#FF9500] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(255,149,0,0.4)] hover:text-white focus-visible:ring-[#FF9500]/40"
+              className="w-full rounded-lg border-0 bg-gradient-to-br from-[#E67800] to-[#FFA500] px-8 py-5 text-[16px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_15px_rgba(230,120,0,0.3)] transition-transform duration-300 hover:-translate-y-0.5 hover:from-[#CC6900] hover:to-[#E67800] hover:bg-transparent hover:shadow-[0_6px_20px_rgba(230,120,0,0.4)] hover:text-white focus-visible:ring-[#E67800]/40"
             >
               Submit Request
             </Button>
@@ -81,7 +81,7 @@ function Page1SidebarContent () {
     <>
       <div className="inline-block">
         <h3 className="relative text-[32px] font-bold pl-[24px]">
-          <span className="absolute left-0 top-0 h-full w-[5px] rounded bg-[#FF9500]" />
+          <span className="absolute left-0 top-0 h-full w-[5px] rounded bg-[#E67800]" />
           Why Choose Us?
         </h3>
       </div>
@@ -89,9 +89,9 @@ function Page1SidebarContent () {
         {FEATURES.map(({ icon: Icon, title, description }) => (
           <div
             key={title}
-            className="flex items-start gap-4 rounded-lg border-l-[3px] border-[#FF9500] bg-white/10 p-5 transition-all duration-300 hover:translate-x-1 hover:bg-white/20"
+            className="flex items-start gap-4 rounded-lg border-l-[3px] border-[#E67800] bg-white/10 p-5 transition-all duration-300 hover:translate-x-1 hover:bg-white/20"
           >
-            <div className="flex size-11 items-center justify-center rounded-lg bg-gradient-to-br from-[#FF9500] to-[#FFA500] shadow-lg">
+            <div className="flex size-11 items-center justify-center rounded-lg bg-gradient-to-br from-[#E67800] to-[#FFA500] shadow-lg">
               <Icon className="size-5 text-white" strokeWidth={2.5} />
             </div>
             <div className="space-y-2">
@@ -102,14 +102,14 @@ function Page1SidebarContent () {
         ))}
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3">
-        <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
+      <div className="mt-6 mb-6 flex flex-wrap gap-3">
+        <div className="rounded-full border border-[#E67800]/40 bg-[#E67800]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
           ISO Certified
         </div>
-        <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
+        <div className="rounded-full border border-[#E67800]/40 bg-[#E67800]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
           200+ Languages
         </div>
-        <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
+        <div className="rounded-full border border-[#E67800]/40 bg-[#E67800]/20 px-4 py-2 text-[11px] font-semibold text-[#FFB347]">
           HIPAA Compliant
         </div>
       </div>
@@ -127,7 +127,7 @@ function Page2SidebarContent ({ serviceType }: { serviceType: string }) {
            serviceType === 'onsite' ? 'On-Site Guide' :
            'Service Selection'}
         </h3>
-        <div className="mt-3 h-1 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-3 h-1 w-12 rounded bg-[#E67800]" />
       </div>
 
       {!serviceType && (
@@ -136,15 +136,15 @@ function Page2SidebarContent ({ serviceType }: { serviceType: string }) {
             Select the service type that best fits your needs. Each option offers professional interpretation with qualified interpreters.
           </p>
           <div className="space-y-4">
-            <div className="rounded-lg bg-white/10 p-4 border-l-4 border-[#FF9500]">
+            <div className="rounded-lg bg-white/10 p-4 border-l-4 border-[#E67800]">
               <p className="text-sm font-semibold text-white mb-1">Over-the-Phone</p>
               <p className="text-xs text-white/85">Best for quick consultations and phone appointments. Instant availability for most languages.</p>
             </div>
-            <div className="rounded-lg bg-white/10 p-4 border-l-4 border-[#FF9500]">
+            <div className="rounded-lg bg-white/10 p-4 border-l-4 border-[#E67800]">
               <p className="text-sm font-semibold text-white mb-1">Video/VRI</p>
               <p className="text-xs text-white/85">Ideal for visual communication needs. HIPAA-compliant platform provided or use your own.</p>
             </div>
-            <div className="rounded-lg bg-white/10 p-4 border-l-4 border-[#FF9500]">
+            <div className="rounded-lg bg-white/10 p-4 border-l-4 border-[#E67800]">
               <p className="text-sm font-semibold text-white mb-1">Onsite</p>
               <p className="text-xs text-white/85">Professional in-person interpreters. Perfect for medical procedures, legal proceedings, and critical meetings.</p>
             </div>
@@ -167,9 +167,9 @@ function Page2SidebarContent ({ serviceType }: { serviceType: string }) {
             <div className="rounded-lg bg-white/10 p-4 border border-white/20">
               <p className="text-sm font-semibold text-white mb-2">Best Practices</p>
               <ul className="space-y-2 text-xs text-white/85">
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Join 5 minutes early to test audio/video</li>
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Ensure good lighting and stable internet</li>
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Position camera at eye level</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Join 5 minutes early to test audio/video</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Ensure good lighting and stable internet</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Position camera at eye level</li>
               </ul>
             </div>
           </div>
@@ -191,9 +191,9 @@ function Page2SidebarContent ({ serviceType }: { serviceType: string }) {
             <div className="rounded-lg bg-white/10 p-4 border border-white/20">
               <p className="text-sm font-semibold text-white mb-2">Preparation Tips</p>
               <ul className="space-y-2 text-xs text-white/85">
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Have backup contact number ready</li>
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Test phone line before appointment</li>
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Speak clearly and at moderate pace</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Have backup contact number ready</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Test phone line before appointment</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Speak clearly and at moderate pace</li>
               </ul>
             </div>
           </div>
@@ -215,18 +215,18 @@ function Page2SidebarContent ({ serviceType }: { serviceType: string }) {
             <div className="rounded-lg bg-white/10 p-4 border border-white/20">
               <p className="text-sm font-semibold text-white mb-2">Arrival Details</p>
               <ul className="space-y-2 text-xs text-white/85">
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Include check-in procedures</li>
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Specify parking or public transit options</li>
-                <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Note any security requirements</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Include check-in procedures</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Specify parking or public transit options</li>
+                <li className="flex gap-2"><span className="text-[#E67800]">•</span> Note any security requirements</li>
               </ul>
             </div>
           </div>
         </div>
       )}
 
-      <div className="mt-6 rounded-lg bg-gradient-to-r from-[#FF9500]/20 to-[#FFA500]/20 p-4 border border-[#FF9500]/30">
+      <div className="mt-6 rounded-lg bg-gradient-to-r from-[#E67800]/20 to-[#FFA500]/20 p-4 border border-[#E67800]/30">
         <p className="text-sm font-semibold flex items-center gap-2 text-white">
-          <Clock className="h-4 w-4 text-[#FF9500]" />
+          <Clock className="h-4 w-4 text-[#E67800]" />
           Scheduling Tip
         </p>
         <p className="text-xs text-white/90 mt-2 leading-relaxed">
@@ -242,7 +242,7 @@ function Page3SidebarContent () {
     <>
       <div>
         <h3 className="text-[28px] font-bold">Location Guide</h3>
-        <div className="mt-3 h-1 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-3 h-1 w-12 rounded bg-[#E67800]" />
       </div>
 
       <p className="mt-6 text-[15px] leading-relaxed text-white/95">
@@ -253,10 +253,10 @@ function Page3SidebarContent () {
         <div className="rounded-lg bg-white/10 p-4 border border-white/20">
           <p className="text-sm font-semibold text-white mb-2">Location Best Practices</p>
           <ul className="space-y-2 text-xs text-white/85">
-            <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Include full street address</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Specify building name and entrance</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Note department, floor, and room number</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">•</span> Add parking or transit instructions</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">•</span> Include full street address</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">•</span> Specify building name and entrance</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">•</span> Note department, floor, and room number</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">•</span> Add parking or transit instructions</li>
           </ul>
         </div>
 
@@ -277,7 +277,7 @@ function Page3SidebarContent () {
         <div className="rounded-lg bg-white/10 p-4 border border-white/20">
           <p className="text-sm font-semibold text-white mb-2">Additional Comments</p>
           <p className="text-xs text-white/85 leading-relaxed">
-            Share helpful details like campus maps, parking codes, or front desk numbers. <strong className="text-[#FF9500]">Do not include PHI</strong> (patient names, DOBs, MRNs).
+            Share helpful details like campus maps, parking codes, or front desk numbers. <strong className="text-[#E67800]">Do not include PHI</strong> (patient names, DOBs, MRNs).
           </p>
         </div>
       </div>
@@ -297,7 +297,7 @@ function Page4SidebarContent ({ hasClientId }: { hasClientId: boolean }) {
     <>
       <div>
         <h3 className="text-[28px] font-bold">Billing Details</h3>
-        <div className="mt-3 h-1 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-3 h-1 w-12 rounded bg-[#E67800]" />
       </div>
 
       <p className="mt-6 text-[15px] leading-relaxed text-white/95">
@@ -309,7 +309,7 @@ function Page4SidebarContent ({ hasClientId }: { hasClientId: boolean }) {
       <div className="mt-8 space-y-6">
         <div className="rounded-lg bg-white/10 p-4 border border-white/20">
           <p className="text-sm font-semibold flex items-center gap-2 text-white mb-2">
-            <Shield className="h-4 w-4 text-[#FF9500]" />
+            <Shield className="h-4 w-4 text-[#E67800]" />
             {hasClientId ? 'Existing Customer' : 'New Customer Setup'}
           </p>
           <p className="text-xs text-white/85 leading-relaxed">
@@ -330,9 +330,9 @@ function Page4SidebarContent ({ hasClientId }: { hasClientId: boolean }) {
           <div className="rounded-lg bg-white/10 p-4 border border-white/20">
             <p className="text-sm font-semibold text-white mb-2">Security & Privacy</p>
             <ul className="space-y-2 text-xs text-white/85">
-              <li className="flex gap-2"><span className="text-[#FF9500]">•</span> All data encrypted in transit and at rest</li>
-              <li className="flex gap-2"><span className="text-[#FF9500]">•</span> PCI DSS compliant payment processing</li>
-              <li className="flex gap-2"><span className="text-[#FF9500]">•</span> HIPAA-compliant data handling</li>
+              <li className="flex gap-2"><span className="text-[#E67800]">•</span> All data encrypted in transit and at rest</li>
+              <li className="flex gap-2"><span className="text-[#E67800]">•</span> PCI DSS compliant payment processing</li>
+              <li className="flex gap-2"><span className="text-[#E67800]">•</span> HIPAA-compliant data handling</li>
             </ul>
           </div>
         )}
@@ -353,7 +353,7 @@ function Page5SidebarContent () {
     <>
       <div>
         <h3 className="text-[28px] font-bold">Final Review</h3>
-        <div className="mt-3 h-1 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-3 h-1 w-12 rounded bg-[#E67800]" />
       </div>
 
       <p className="mt-6 text-[15px] leading-relaxed text-white/95">
@@ -364,21 +364,21 @@ function Page5SidebarContent () {
         <div className="rounded-lg bg-white/10 p-4 border border-white/20">
           <p className="text-sm font-semibold text-white mb-2">Pre-Submission Checklist</p>
           <ul className="space-y-2 text-xs text-white/85">
-            <li className="flex gap-2"><span className="text-[#FF9500]">✓</span> Date, time, and timezone are correct</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">✓</span> Service type matches your needs</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">✓</span> Language requirements are accurate</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">✓</span> Location details are complete</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">✓</span> Contact information is current</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">✓</span> Date, time, and timezone are correct</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">✓</span> Service type matches your needs</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">✓</span> Language requirements are accurate</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">✓</span> Location details are complete</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">✓</span> Contact information is current</li>
           </ul>
         </div>
 
         <div className="rounded-lg bg-white/10 p-4 border border-white/20">
           <p className="text-sm font-semibold text-white mb-2">What Happens Next?</p>
           <ul className="space-y-2 text-xs text-white/85">
-            <li className="flex gap-2"><span className="text-[#FF9500]">1.</span> We review your request</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">2.</span> Confirm interpreter availability</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">3.</span> Send confirmation within 24 hours</li>
-            <li className="flex gap-2"><span className="text-[#FF9500]">4.</span> Reminder sent before appointment</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">1.</span> We review your request</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">2.</span> Confirm interpreter availability</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">3.</span> Send confirmation within 24 hours</li>
+            <li className="flex gap-2"><span className="text-[#E67800]">4.</span> Reminder sent before appointment</li>
           </ul>
         </div>
 
@@ -408,10 +408,10 @@ function AIAssistSidebarContent () {
     <>
       <div>
         <h3 className="text-xl font-bold flex items-center gap-2">
-          <Sparkles className="h-6 w-6 text-[#FF9500]" />
+          <Sparkles className="h-6 w-6 text-[#E67800]" />
           Paste details to auto-fill
         </h3>
-        <div className="mt-2 h-1 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-2 h-1 w-12 rounded bg-[#E67800]" />
       </div>
 
       <p className="text-sm leading-relaxed text-white/90">

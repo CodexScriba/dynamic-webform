@@ -10,7 +10,7 @@ import { QuoteFormSchema } from '@/lib/schemas/quote-form-schema'
 
 const labelClasses = 'text-sm font-medium text-slate-600'
 const inputClasses =
-  'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0'
+  'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0'
 const fieldIconClasses =
   'pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400'
 
@@ -30,7 +30,7 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
       {/* Location */}
       <div>
         <h3 className="text-lg font-semibold text-[#002060]">Location</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <FormField
@@ -44,7 +44,7 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
               <FormControl>
                 <Textarea
                   placeholder="Enter appointment address or location"
-                  className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 pl-12 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                  className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 pl-12 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                   {...field}
                 />
               </FormControl>
@@ -63,7 +63,7 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
             <FormControl>
               <Textarea
                 placeholder="Building name, department, floor, suite or room #, etc."
-                className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                 {...field}
               />
             </FormControl>
@@ -78,7 +78,7 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
       {/* Point of Contact & Provider */}
       <div className="pt-6">
         <h3 className="text-lg font-semibold text-[#002060]">Point of Contact & Provider</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <FormField
@@ -129,7 +129,7 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
       {/* Additional Comments */}
       <div className="pt-6">
         <h3 className="text-lg font-semibold text-[#002060]">Additional Comments</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
       <FormField
@@ -141,7 +141,7 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
             <FormControl>
               <Textarea
                 placeholder="Enter any additional comments..."
-                className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
                 {...field}
               />
             </FormControl>

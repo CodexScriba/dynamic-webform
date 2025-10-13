@@ -28,9 +28,9 @@ export function StepIndicator ({ currentStep, steps }: StepIndicatorProps) {
                 <motion.div
                   className={`flex h-11 w-11 items-center justify-center rounded-full border-2 transition-all duration-300 ${
                     isActive
-                      ? 'border-[#FF9500] bg-[#FF9500] shadow-[0_0_12px_rgba(255,149,0,0.4)] text-white'
+                      ? 'border-[#E67800] bg-[#E67800] shadow-[0_0_12px_rgba(230,120,0,0.4)] text-white'
                       : isCompleted
-                      ? 'border-[#FF9500] bg-[#FF9500] text-white'
+                      ? 'border-[#E67800] bg-[#E67800] text-white'
                       : 'border-slate-300 bg-white text-slate-400'
                   }`}
                   initial={false}
@@ -48,7 +48,7 @@ export function StepIndicator ({ currentStep, steps }: StepIndicatorProps) {
                 <span
                   className={`text-xs font-medium whitespace-nowrap transition-colors duration-300 ${
                     isActive
-                      ? 'text-[#FF9500] font-semibold'
+                      ? 'text-[#E67800] font-semibold'
                       : isCompleted
                       ? 'text-slate-700'
                       : 'text-slate-400'
@@ -61,7 +61,7 @@ export function StepIndicator ({ currentStep, steps }: StepIndicatorProps) {
                 <div className="mx-3 flex-1">
                   <div
                     className={`h-0.5 transition-all duration-500 ${
-                      isCompleted ? 'bg-[#FF9500]' : 'bg-slate-300'
+                      isCompleted ? 'bg-[#E67800]' : 'bg-slate-300'
                     }`}
                   />
                 </div>
