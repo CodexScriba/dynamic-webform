@@ -2,7 +2,7 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Building2, Hash, UserRound, Mail, Phone, Video, MapPin, Phone as PhoneIcon } from 'lucide-react'
+import { Building2, Hash, UserRound, Mail, Phone } from 'lucide-react'
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
@@ -13,12 +13,6 @@ const inputClasses =
   'h-11 rounded-2xl border-none bg-slate-50 pl-12 pr-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0'
 const fieldIconClasses =
   'pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400'
-
-const SERVICE_TYPES = [
-  { id: 'otp', label: 'Over-the-Phone', icon: PhoneIcon },
-  { id: 'vri', label: 'Video/VRI', icon: Video },
-  { id: 'onsite', label: 'Onsite', icon: MapPin }
-] as const
 
 interface Page1IntroBasicsProps {
   form: UseFormReturn<QuoteFormSchema>
@@ -192,53 +186,6 @@ export function Page1IntroBasics ({ form }: Page1IntroBasicsProps) {
         />
       </div>
 
-      {/* Service Type */}
-      <div className="pt-6">
-        <h3 className="text-lg font-semibold text-[#002060]">Service Type</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
-      </div>
-
-      <FormField
-        control={form.control}
-        name="serviceType"
-        render={({ field }) => (
-          <FormItem className="space-y-3">
-            <FormLabel className={labelClasses}>Select Service Type</FormLabel>
-            <FormControl>
-              <div className="grid grid-cols-3 gap-3">
-                {SERVICE_TYPES.map((service) => {
-                  const Icon = service.icon
-                  const isSelected = field.value === service.id
-                  return (
-                    <button
-                      key={service.id}
-                      type="button"
-                      onClick={() => field.onChange(service.id)}
-                      className={`flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-4 transition-all duration-200 ${
-                        isSelected
-                          ? 'border-[#FF9500] bg-[#FF9500]/10 shadow-md'
-                          : 'border-slate-200 bg-white hover:border-[#FF9500]/50 hover:bg-slate-50'
-                      }`}
-                    >
-                      <Icon
-                        className={`size-6 ${isSelected ? 'text-[#FF9500]' : 'text-slate-600'}`}
-                      />
-                      <span
-                        className={`text-sm font-medium ${
-                          isSelected ? 'text-[#FF9500]' : 'text-slate-700'
-                        }`}
-                      >
-                        {service.label}
-                      </span>
-                    </button>
-                  )
-                })}
-              </div>
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
     </motion.div>
   )
 }

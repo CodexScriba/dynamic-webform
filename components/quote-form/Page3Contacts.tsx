@@ -2,7 +2,7 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { motion } from 'framer-motion'
-import { UserRound, Phone, DollarSign } from 'lucide-react'
+import { UserRound, MapPin } from 'lucide-react'
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -27,9 +27,57 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
       transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      {/* Contacts */}
+      {/* Location */}
       <div>
-        <h3 className="text-lg font-semibold text-[#002060]">👥 Contacts</h3>
+        <h3 className="text-lg font-semibold text-[#002060]">Location</h3>
+        <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
+      </div>
+
+      <FormField
+        control={form.control}
+        name="address"
+        render={({ field }) => (
+          <FormItem className="space-y-2">
+            <FormLabel className={labelClasses}>Address / Location</FormLabel>
+            <div className="relative">
+              <MapPin className="pointer-events-none absolute left-4 top-4 size-4 text-slate-400" aria-hidden="true" />
+              <FormControl>
+                <Textarea
+                  placeholder="Enter appointment address or location"
+                  className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 pl-12 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                  {...field}
+                />
+              </FormControl>
+            </div>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="locationDetails"
+        render={({ field }) => (
+          <FormItem className="space-y-2">
+            <FormLabel className={labelClasses}>Additional check-in instructions</FormLabel>
+            <FormControl>
+              <Textarea
+                placeholder="Building name, department, floor, suite or room #, etc."
+                className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#FF9500]/40 focus-visible:ring-offset-0"
+                {...field}
+              />
+            </FormControl>
+            <p className="text-xs text-slate-500">
+              Be very specific (e.g., building name, department, floor, suite or room #)
+            </p>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
+      {/* Point of Contact & Provider */}
+      <div className="pt-6">
+        <h3 className="text-lg font-semibold text-[#002060]">Point of Contact & Provider</h3>
         <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
       </div>
 
@@ -78,9 +126,9 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
         )}
       />
 
-      {/* Additional Information */}
+      {/* Additional Comments */}
       <div className="pt-6">
-        <h3 className="text-lg font-semibold text-[#002060]">💬 Additional Information</h3>
+        <h3 className="text-lg font-semibold text-[#002060]">Additional Comments</h3>
         <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
       </div>
 
@@ -104,54 +152,6 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
           </FormItem>
         )}
       />
-
-      <div className="grid gap-6 md:grid-cols-2">
-        <FormField
-          control={form.control}
-          name="costCenter"
-          render={({ field }) => (
-            <FormItem className="space-y-2">
-              <FormLabel className={labelClasses}>Cost Center Number</FormLabel>
-              <div className="relative">
-                <DollarSign className={fieldIconClasses} aria-hidden="true" />
-                <FormControl>
-                  <Input
-                    placeholder="Enter cost center number"
-                    className={inputClasses}
-                    {...field}
-                  />
-                </FormControl>
-              </div>
-              <p className="text-xs text-slate-500">
-                Enter code so billing routes correctly
-              </p>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="altPhone"
-          render={({ field }) => (
-            <FormItem className="space-y-2">
-              <FormLabel className={labelClasses}>Alternate Phone</FormLabel>
-              <div className="relative">
-                <Phone className={fieldIconClasses} aria-hidden="true" />
-                <FormControl>
-                  <Input
-                    type="tel"
-                    placeholder="(555) 123-4567"
-                    className={inputClasses}
-                    {...field}
-                  />
-                </FormControl>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
     </motion.div>
   )
 }

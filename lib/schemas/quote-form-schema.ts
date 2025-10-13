@@ -40,7 +40,6 @@ export const quoteFormSchema = z.object({
   // Additional Information - optional
   comments: z.string().optional(),
   costCenter: z.string().optional(),
-  altPhone: z.string().optional(),
 
   // Billing Information - optional
   billingAddress: z.string().optional(),
@@ -73,7 +72,6 @@ export const defaultFormValues: QuoteFormSchema = {
   providerName: '',
   comments: '',
   costCenter: '',
-  altPhone: '',
   billingAddress: '',
   billingContactName: '',
   billingPhone: '',

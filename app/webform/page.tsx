@@ -9,19 +9,21 @@ import { Form } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { quoteFormSchema, defaultFormValues, QuoteFormSchema } from '@/lib/schemas/quote-form-schema'
 import { saveDraft, loadDraft, clearDraft, hasDraft } from '@/lib/utils/draft-storage'
-import { ProgressBar } from '@/components/quote-form/ProgressBar'
+import { StepIndicator } from '@/components/quote-form/StepIndicator'
 import { Page1IntroBasics } from '@/components/quote-form/Page1IntroBasics'
-import { Page2Appointment } from '@/components/quote-form/Page2Appointment'
+import { Page2ServiceAppointment } from '@/components/quote-form/Page2ServiceAppointment'
 import { Page3Contacts } from '@/components/quote-form/Page3Contacts'
-import { Page4BillingReview } from '@/components/quote-form/Page4BillingReview'
+import { Page4Billing } from '@/components/quote-form/Page4Billing'
+import { Page5Review } from '@/components/quote-form/Page5Review'
 import { AIAssistPanel } from '@/components/quote-form/AIAssistPanel'
 import { RightSidebar } from '@/components/quote-form/RightSidebar'
 
 const STEPS = [
-  { number: 1, title: 'Intro & Basics' },
-  { number: 2, title: 'Appointment & Location' },
-  { number: 3, title: 'Contacts & Notes' },
-  { number: 4, title: 'Billing & Review' }
+  { number: 1, title: 'Organization' },
+  { number: 2, title: 'Service' },
+  { number: 3, title: 'Location' },
+  { number: 4, title: 'Billing' },
+  { number: 5, title: 'Review' }
 ]
 
 export default function WebformPage () {
@@ -73,7 +75,7 @@ export default function WebformPage () {
   }
 
   const handleNext = () => {
-    if (currentPage < 4) {
+    if (currentPage < 5) {
       setCurrentPage(currentPage + 1)
     }
   }
@@ -181,10 +183,9 @@ export default function WebformPage () {
 
             {!aiAssistMode && (
               <div className="mt-8 mb-8">
-                <ProgressBar
+                <StepIndicator
                   currentStep={currentPage}
-                  totalSteps={4}
-                  stepTitle={STEPS[currentPage - 1].title}
+                  steps={STEPS}
                 />
               </div>
             )}
@@ -201,11 +202,13 @@ export default function WebformPage () {
                   ) : currentPage === 1 ? (
                     <Page1IntroBasics key="page-1" form={form} />
                   ) : currentPage === 2 ? (
-                    <Page2Appointment key="page-2" form={form} />
+                    <Page2ServiceAppointment key="page-2" form={form} />
                   ) : currentPage === 3 ? (
                     <Page3Contacts key="page-3" form={form} />
+                  ) : currentPage === 4 ? (
+                    <Page4Billing key="page-4" form={form} />
                   ) : (
-                    <Page4BillingReview key="page-4" form={form} />
+                    <Page5Review key="page-5" form={form} />
                   )}
                 </AnimatePresence>
 
@@ -228,7 +231,7 @@ export default function WebformPage () {
                     <div className="text-sm text-slate-500">
                       Step {currentPage} of {STEPS.length}
                     </div>
-                    {currentPage < 4 ? (
+                    {currentPage < 5 ? (
                       <Button
                         type="button"
                         onClick={handleNext}
