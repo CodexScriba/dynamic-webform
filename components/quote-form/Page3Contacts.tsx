@@ -60,16 +60,16 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
         render={({ field }) => (
           <FormItem className="space-y-2">
             <FormLabel className={labelClasses}>Additional check-in instructions</FormLabel>
-            <FormControl>
-              <Textarea
-                placeholder="Building name, department, floor, suite or room #, etc."
-                className="min-h-[80px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
-                {...field}
-              />
-            </FormControl>
-            <p className="text-xs text-slate-500">
-              Be very specific (e.g., building name, department, floor, suite or room #)
-            </p>
+            <div className="relative">
+              <UserRound className={fieldIconClasses} aria-hidden="true" />
+              <FormControl>
+                <Input
+                  placeholder="Building name, department, floor, suite or room #, etc."
+                  className={inputClasses}
+                  {...field}
+                />
+              </FormControl>
+            </div>
             <FormMessage />
           </FormItem>
         )}
@@ -81,77 +81,51 @@ export function Page3Contacts ({ form }: Page3ContactsProps) {
         <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
       </div>
 
-      <FormField
-        control={form.control}
-        name="pointOfContact"
-        render={({ field }) => (
-          <FormItem className="space-y-2">
-            <FormLabel className={labelClasses}>Point of Contact</FormLabel>
-            <div className="relative">
-              <UserRound className={fieldIconClasses} aria-hidden="true" />
-              <FormControl>
-                <Input
-                  placeholder="Onsite or meeting host contact"
-                  className={inputClasses}
-                  {...field}
-                />
-              </FormControl>
-            </div>
-            <p className="text-xs text-slate-500">
-              Use on-site or meeting host contact, e.g., &quot;Maria Lopez, Radiology Front Desk&quot;
-            </p>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid gap-6 md:grid-cols-2">
+        <FormField
+          control={form.control}
+          name="pointOfContact"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel className={labelClasses}>Point of Contact</FormLabel>
+              <div className="relative">
+                <UserRound className={fieldIconClasses} aria-hidden="true" />
+                <FormControl>
+                  <Input
+                    placeholder="Onsite or meeting host contact"
+                    className={inputClasses}
+                    {...field}
+                  />
+                </FormControl>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <FormField
-        control={form.control}
-        name="providerName"
-        render={({ field }) => (
-          <FormItem className="space-y-2">
-            <FormLabel className={labelClasses}>Doctor/Provider Name</FormLabel>
-            <div className="relative">
-              <UserRound className={fieldIconClasses} aria-hidden="true" />
-              <FormControl>
-                <Input
-                  placeholder="Enter doctor or provider name"
-                  className={inputClasses}
-                  {...field}
-                />
-              </FormControl>
-            </div>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      {/* Additional Comments */}
-      <div className="pt-6">
-        <h3 className="text-lg font-semibold text-[#002060]">Additional Comments</h3>
-        <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
+        <FormField
+          control={form.control}
+          name="providerName"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel className={labelClasses}>Doctor/Provider Name</FormLabel>
+              <div className="relative">
+                <UserRound className={fieldIconClasses} aria-hidden="true" />
+                <FormControl>
+                  <Input
+                    placeholder="Enter doctor or provider name"
+                    className={inputClasses}
+                    {...field}
+                  />
+                </FormControl>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
 
-      <FormField
-        control={form.control}
-        name="comments"
-        render={({ field }) => (
-          <FormItem className="space-y-2">
-            <FormLabel className={labelClasses}>Additional Comments</FormLabel>
-            <FormControl>
-              <Textarea
-                placeholder="Enter any additional comments..."
-                className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
-                {...field}
-              />
-            </FormControl>
-            <p className="text-xs text-slate-500">
-              Do not include PHI or patient identifiers. Helpful: campus map link, parking code, front-desk phone
-            </p>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+
     </motion.div>
   )
 }

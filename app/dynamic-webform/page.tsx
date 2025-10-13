@@ -630,9 +630,9 @@ const Page = () => {
 
                 {/* Step 4: Additional Options */}
                 {currentStep === 4 && (
-                <>
-                {/* VRI Options */}
-                {serviceType === "video" && (
+                  <>
+                    {/* VRI Options */}
+                    {serviceType === "video" && (
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-semibold text-[#002060]">🖥 VRI Options</h3>
@@ -701,39 +701,10 @@ const Page = () => {
                       />
                     )}
                   </div>
-                )}
-
-                {/* Additional Sections and Comments */}
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#002060]">💬 Additional Sections and Comments</h3>
-                    <div className="mt-1 h-0.5 w-12 rounded bg-[#E67800]" />
-                  </div>
-
-                  {/* Additional Comments */}
-                  <FormField
-                    control={form.control}
-                    name="additionalComments"
-                    render={({ field }) => (
-                      <FormItem className="space-y-2">
-                        <FormLabel className={labelClasses}>Additional Comments</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Enter any additional comments..."
-                            className="min-h-[100px] rounded-2xl border-none bg-slate-50 p-4 shadow-inner focus-visible:ring-2 focus-visible:ring-[#E67800]/40 focus-visible:ring-offset-0"
-                            {...field}
-                          />
-                        </FormControl>
-                        <p className="text-xs text-slate-500">
-                          Do not include PHI or patient identifiers.
-                        </p>
-                        <FormMessage />
-                      </FormItem>
                     )}
-                  />
 
-                  {/* Cost Center and Facility Phone */}
-                  <div className="grid gap-6 md:grid-cols-2">
+                    {/* Cost Center and Facility Phone */}
+                    <div className="grid gap-6 md:grid-cols-2">
                     <FormField
                       control={form.control}
                       name="costCenterNumber"
@@ -778,8 +749,7 @@ const Page = () => {
                       )}
                     />
                   </div>
-                </div>
-                </>
+                  </>
                 )}
 
                 {/* Navigation Buttons */}

@@ -167,12 +167,6 @@ export function Page5Review ({ form }: Page5ReviewProps) {
               <p className="text-sm text-slate-900 mt-0.5">{formValues.providerName || 'Not provided'}</p>
             </div>
           </div>
-          {formValues.comments && (
-            <div>
-              <p className="text-xs font-semibold text-slate-500">Additional Comments</p>
-              <p className="text-sm text-slate-900 mt-0.5 whitespace-pre-wrap">{formValues.comments}</p>
-            </div>
-          )}
         </div>
       </div>
 
