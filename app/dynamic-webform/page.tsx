@@ -851,7 +851,7 @@ const Page = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex flex-wrap gap-2 text-[#FFB347]">
+            <div className="mt-8 flex flex-wrap gap-3 pb-4 text-[#FFB347]">
               <div className="rounded-full border border-[#FF9500]/40 bg-[#FF9500]/20 px-3 py-1.5 text-[11px] font-semibold">
                 ISO Certified
               </div>

@@ -35,7 +35,7 @@ export function Page1IntroBasics ({ form }: Page1IntroBasicsProps) {
         <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
       </div>
 
-      <div className="grid gap-6 md:grid-cols-[1fr_auto]">
+      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-start">
         <FormField
           control={form.control}
           name="orgName"
@@ -63,7 +63,7 @@ export function Page1IntroBasics ({ form }: Page1IntroBasicsProps) {
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel className={labelClasses}>Do you have an account with us?</FormLabel>
-              <div className="flex h-11 items-center rounded-2xl border-none bg-slate-50 px-4 shadow-inner">
+              <div className="flex h-11 w-full items-center rounded-2xl border-none bg-slate-50 px-4 shadow-inner">
                 <FormControl>
                   <Switch
                     checked={field.value}
@@ -79,39 +79,40 @@ export function Page1IntroBasics ({ form }: Page1IntroBasicsProps) {
             </FormItem>
           )}
         />
+        <AnimatePresence>
+          {hasAccount && (
+            <motion.div
+              key="client-id-field"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:col-span-1"
+            >
+              <FormField
+                control={form.control}
+                name="clientId"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel className={labelClasses}>Client ID</FormLabel>
+                    <div className="relative">
+                      <Hash className={fieldIconClasses} aria-hidden="true" />
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your client ID"
+                          className={inputClasses}
+                          {...field}
+                        />
+                      </FormControl>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-
-      <AnimatePresence>
-        {hasAccount && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <FormField
-              control={form.control}
-              name="clientId"
-              render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className={labelClasses}>Client ID</FormLabel>
-                  <div className="relative">
-                    <Hash className={fieldIconClasses} aria-hidden="true" />
-                    <FormControl>
-                      <Input
-                        placeholder="Enter your client ID"
-                        className={inputClasses}
-                        {...field}
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Requestor Information */}
       <div className="pt-6">

@@ -52,7 +52,7 @@ export type QuoteFormSchema = z.infer<typeof quoteFormSchema>
 
 export const defaultFormValues: QuoteFormSchema = {
   orgName: '',
-  hasAccount: false,
+  hasAccount: true,
   clientId: '',
   requestorName: '',
   requestorEmail: '',
