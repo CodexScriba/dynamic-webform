@@ -178,9 +178,6 @@ export default function WebformPage () {
           <div className="relative z-10">
             <h2 className="text-[28px] font-bold text-[#002060]">Request a Quote</h2>
             <div className="mt-[15px] h-1 w-[60px] rounded bg-[#FF9500]" />
-            <p className="mt-5 text-[14px] leading-[1.7] text-[#666666]">
-              Connect with our expert team for professional language services
-            </p>
 
             {!aiAssistMode && (
               <div className="mt-8 mb-8">

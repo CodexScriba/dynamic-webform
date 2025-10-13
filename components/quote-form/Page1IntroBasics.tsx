@@ -41,49 +41,51 @@ export function Page1IntroBasics ({ form }: Page1IntroBasicsProps) {
         <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
       </div>
 
-      <FormField
-        control={form.control}
-        name="orgName"
-        render={({ field }) => (
-          <FormItem className="space-y-2">
-            <FormLabel className={labelClasses}>Name of your company/organization</FormLabel>
-            <div className="relative">
-              <Building2 className={fieldIconClasses} aria-hidden="true" />
-              <FormControl>
-                <Input
-                  placeholder="Enter organization name"
-                  className={inputClasses}
-                  {...field}
-                />
-              </FormControl>
-            </div>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid gap-6 md:grid-cols-[1fr_auto]">
+        <FormField
+          control={form.control}
+          name="orgName"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel className={labelClasses}>Name of your company/organization</FormLabel>
+              <div className="relative">
+                <Building2 className={fieldIconClasses} aria-hidden="true" />
+                <FormControl>
+                  <Input
+                    placeholder="Enter organization name"
+                    className={inputClasses}
+                    {...field}
+                  />
+                </FormControl>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <FormField
-        control={form.control}
-        name="hasAccount"
-        render={({ field }) => (
-          <FormItem className="space-y-2">
-            <FormLabel className={labelClasses}>Do you have an existing account with us?</FormLabel>
-            <div className="flex h-11 items-center rounded-2xl border-none bg-slate-50 px-4 shadow-inner">
-              <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  className="data-[state=checked]:bg-[#FF9500]"
-                />
-              </FormControl>
-              <span className="ml-3 text-sm font-medium text-slate-700">
-                {field.value ? 'Yes' : 'No'}
-              </span>
-            </div>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+        <FormField
+          control={form.control}
+          name="hasAccount"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel className={labelClasses}>Do you have an account with us?</FormLabel>
+              <div className="flex h-11 items-center rounded-2xl border-none bg-slate-50 px-4 shadow-inner">
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    className="data-[state=checked]:bg-[#FF9500]"
+                  />
+                </FormControl>
+                <span className="ml-3 text-sm font-medium text-slate-700">
+                  {field.value ? 'Yes' : 'No'}
+                </span>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
 
       <AnimatePresence>
         {hasAccount && (
@@ -123,7 +125,7 @@ export function Page1IntroBasics ({ form }: Page1IntroBasicsProps) {
         <div className="mt-1 h-0.5 w-12 rounded bg-[#FF9500]" />
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-3">
         <FormField
           control={form.control}
           name="requestorName"
@@ -150,7 +152,7 @@ export function Page1IntroBasics ({ form }: Page1IntroBasicsProps) {
           name="requestorPhone"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className={labelClasses}>Requestor Phone Number</FormLabel>
+              <FormLabel className={labelClasses}>Requestor Phone</FormLabel>
               <div className="relative">
                 <Phone className={fieldIconClasses} aria-hidden="true" />
                 <FormControl>
@@ -166,29 +168,29 @@ export function Page1IntroBasics ({ form }: Page1IntroBasicsProps) {
             </FormItem>
           )}
         />
-      </div>
 
-      <FormField
-        control={form.control}
-        name="requestorEmail"
-        render={({ field }) => (
-          <FormItem className="space-y-2">
-            <FormLabel className={labelClasses}>Requestor Email Address</FormLabel>
-            <div className="relative">
-              <Mail className={fieldIconClasses} aria-hidden="true" />
-              <FormControl>
-                <Input
-                  type="email"
-                  placeholder="requestor@company.com"
-                  className={inputClasses}
-                  {...field}
-                />
-              </FormControl>
-            </div>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+        <FormField
+          control={form.control}
+          name="requestorEmail"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel className={labelClasses}>Requestor Email</FormLabel>
+              <div className="relative">
+                <Mail className={fieldIconClasses} aria-hidden="true" />
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder="requestor@company.com"
+                    className={inputClasses}
+                    {...field}
+                  />
+                </FormControl>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
 
       {/* Service Type */}
       <div className="pt-6">
